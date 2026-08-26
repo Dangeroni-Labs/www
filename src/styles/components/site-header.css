@@ -52,6 +52,11 @@
 	line-height: 1;
 }
 
+.site-header__links a:hover,
+.site-header__links a:focus-visible {
+	color: var(--color-accent);
+}
+
 @media (max-width: 38rem) {
 	.site-header__inner {
 		align-items: flex-start;

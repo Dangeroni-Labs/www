@@ -55,7 +55,8 @@
 	text-decoration: none;
 }
 
-.links-list a:hover {
+.links-list a:hover,
+.links-list a:focus-visible {
 	color: var(--color-project-accent);
 }
 

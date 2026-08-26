@@ -36,10 +36,12 @@ a {
 	color: inherit;
 	text-decoration-color: var(--color-border-strong);
 	text-underline-offset: var(--space-1);
+	transition: color var(--duration-fast) var(--ease-standard), text-decoration-color var(--duration-fast) var(--ease-standard);
 }
 
-a:hover {
-	text-decoration-color: currentColor;
+a:hover,
+a:focus-visible {
+	text-decoration-color: var(--color-accent);
 }
 
 img {

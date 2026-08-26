@@ -28,6 +28,11 @@
 	text-decoration: none;
 }
 
+.site-footer__links a:hover,
+.site-footer__links a:focus-visible {
+	color: var(--color-accent);
+}
+
 .site-footer__links svg {
 	width: var(--size-icon-sm);
 	height: var(--size-icon-sm);

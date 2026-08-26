@@ -30,3 +30,8 @@
 	font-size: var(--font-size-small);
 	font-weight: var(--font-weight-semibold);
 }
+
+.text-link:hover,
+.text-link:focus-visible {
+	color: var(--color-accent-strong);
+}

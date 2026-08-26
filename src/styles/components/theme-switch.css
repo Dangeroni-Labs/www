@@ -48,7 +48,7 @@ html[data-theme-preference='dark'] .theme-switch__icon--dark {
 	top: calc(100% + var(--space-2));
 	right: 0;
 	display: grid;
-	min-width: 10rem;
+	min-width: var(--size-theme-menu);
 	padding: var(--space-2);
 	border: 1px solid var(--color-border);
 	border-radius: var(--radius-sm);
@@ -57,7 +57,8 @@ html[data-theme-preference='dark'] .theme-switch__icon--dark {
 }
 
 .theme-menu__options button {
-	display: flex;
+	display: grid;
+	grid-template-columns: var(--size-icon-sm) minmax(0, 1fr);
 	align-items: center;
 	gap: var(--space-3);
 	width: 100%;
@@ -69,6 +70,7 @@ html[data-theme-preference='dark'] .theme-switch__icon--dark {
 	font-size: var(--font-size-small);
 	line-height: 1;
 	text-align: left;
+	white-space: nowrap;
 	cursor: pointer;
 }
 
@@ -83,6 +85,7 @@ html[data-theme-preference='dark'] .theme-switch__icon--dark {
 }
 
 .theme-menu__options svg {
+	flex: none;
 	width: var(--size-icon-sm);
 	height: var(--size-icon-sm);
 }
