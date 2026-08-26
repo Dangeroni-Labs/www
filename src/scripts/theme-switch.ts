@@ -2,12 +2,32 @@ const themePreferences = ['system', 'light', 'dark'] as const
 type ThemePreference = (typeof themePreferences)[number]
 
 const root = document.documentElement
-const control = document.querySelector<HTMLButtonElement>('[data-theme-switch]')
+const menu = document.querySelector<HTMLElement>('[data-theme-menu]')
+const trigger = document.querySelector<HTMLButtonElement>(
+	'[data-theme-menu-trigger]',
+)
+const options = document.querySelector<HTMLElement>('[data-theme-menu-options]')
+const preferenceButtons = document.querySelectorAll<HTMLButtonElement>(
+	'[data-theme-option]',
+)
 const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)')
 const storageKey = root.dataset.themeStorageKey
 
 const isThemePreference = (value: string | null): value is ThemePreference =>
 	value === 'system' || value === 'light' || value === 'dark'
+
+const setMenuOpen = (isOpen: boolean, restoreFocus = false) => {
+	if (!trigger || !options) {
+		return
+	}
+
+	trigger.setAttribute('aria-expanded', String(isOpen))
+	options.hidden = !isOpen
+
+	if (restoreFocus) {
+		trigger.focus()
+	}
+}
 
 const applyTheme = (preference: ThemePreference) => {
 	const theme =
@@ -20,30 +40,46 @@ const applyTheme = (preference: ThemePreference) => {
 	root.dataset.themePreference = preference
 	root.dataset.theme = theme
 
-	if (control) {
-		control.dataset.currentTheme = preference
-		control.setAttribute(
-			'aria-label',
-			control.dataset[
-				`label${preference[0].toUpperCase()}${preference.slice(1)}`
-			] ?? '',
+	for (const button of preferenceButtons) {
+		button.setAttribute(
+			'aria-checked',
+			String(button.dataset.themePreference === preference),
 		)
 	}
 }
 
-if (control) {
-	control.addEventListener('click', () => {
-		const current = root.dataset.themePreference
-		const index = themePreferences.indexOf(
-			isThemePreference(current) ? current : 'system',
-		)
-		const preference = themePreferences[(index + 1) % themePreferences.length]
+if (trigger && options && menu) {
+	trigger.addEventListener('click', () => {
+		setMenuOpen(options.hidden)
+	})
 
-		try {
-			window.localStorage.setItem(storageKey ?? '', preference)
-		} catch {}
+	for (const button of preferenceButtons) {
+		button.addEventListener('click', () => {
+			const preference = button.dataset.themePreference
 
-		applyTheme(preference)
+			if (!isThemePreference(preference)) {
+				return
+			}
+
+			try {
+				window.localStorage.setItem(storageKey ?? '', preference)
+			} catch {}
+
+			applyTheme(preference)
+			setMenuOpen(false, true)
+		})
+	}
+
+	document.addEventListener('pointerdown', event => {
+		if (!menu.contains(event.target as Node)) {
+			setMenuOpen(false)
+		}
+	})
+
+	document.addEventListener('keydown', event => {
+		if (event.key === 'Escape' && !options.hidden) {
+			setMenuOpen(false, true)
+		}
 	})
 
 	applyTheme(

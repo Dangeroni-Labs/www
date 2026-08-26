@@ -4,17 +4,33 @@ import { Icon } from 'astro-icon/components'
 import { THEME_CONTENT } from '$/const/content'
 ---
 
-<button
-	aria-label={THEME_CONTENT.system}
-	class="theme-switch"
-	data-label-dark={THEME_CONTENT.dark}
-	data-label-light={THEME_CONTENT.light}
-	data-label-system={THEME_CONTENT.system}
-	data-theme-switch
-	type="button"
->
-	<Icon aria-hidden="true" class="theme-switch__icon theme-switch__icon--system" name="mdi:desktop-classic" />
-	<Icon aria-hidden="true" class="theme-switch__icon theme-switch__icon--light" name="mdi:weather-sunny" />
-	<Icon aria-hidden="true" class="theme-switch__icon theme-switch__icon--dark" name="mdi:weather-night" />
-	<span class="theme-switch__label">{THEME_CONTENT.label}</span>
-</button>
+<div class="theme-menu" data-theme-menu>
+	<button
+		aria-controls="theme-menu-options"
+		aria-expanded="false"
+		aria-haspopup="menu"
+		aria-label={THEME_CONTENT.label}
+		class="theme-switch"
+		data-theme-menu-trigger
+		type="button"
+	>
+		<Icon aria-hidden="true" class="theme-switch__icon theme-switch__icon--system" name="mdi:desktop-classic" />
+		<Icon aria-hidden="true" class="theme-switch__icon theme-switch__icon--light" name="mdi:weather-sunny" />
+		<Icon aria-hidden="true" class="theme-switch__icon theme-switch__icon--dark" name="mdi:weather-night" />
+		<span class="theme-switch__label">{THEME_CONTENT.label}</span>
+	</button>
+	<div aria-label={THEME_CONTENT.menuLabel} class="theme-menu__options" data-theme-menu-options hidden id="theme-menu-options" role="menu">
+		<button aria-checked="false" data-theme-option data-theme-preference="system" role="menuitemradio" type="button">
+			<Icon aria-hidden="true" name="mdi:desktop-classic" />
+			<span>{THEME_CONTENT.system}</span>
+		</button>
+		<button aria-checked="false" data-theme-option data-theme-preference="light" role="menuitemradio" type="button">
+			<Icon aria-hidden="true" name="mdi:weather-sunny" />
+			<span>{THEME_CONTENT.light}</span>
+		</button>
+		<button aria-checked="false" data-theme-option data-theme-preference="dark" role="menuitemradio" type="button">
+			<Icon aria-hidden="true" name="mdi:weather-night" />
+			<span>{THEME_CONTENT.dark}</span>
+		</button>
+	</div>
+</div>

@@ -9,6 +9,7 @@ loaders:
 logo: renewable-lava
 featured: true
 repository: https://github.com/Dangeroni-Labs/renewable-lava
+curseforge: https://www.curseforge.com/minecraft/mc-mods/kossmans-renewable-lava
 issues: https://github.com/Dangeroni-Labs/renewable-lava/issues
 ---
 

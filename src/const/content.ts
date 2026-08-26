@@ -25,7 +25,8 @@ export const FOOTER_CONTENT = {
 } as const
 
 export const THEME_CONTENT = {
-	label: 'Change color theme',
+	label: 'Select color theme',
+	menuLabel: 'Color theme options',
 	system: 'System theme',
 	light: 'Light theme',
 	dark: 'Dark theme',
@@ -38,7 +39,7 @@ export const MODS_CONTENT = {
 	version: 'Version',
 	minecraftVersion: 'Minecraft',
 	loaders: 'Loaders',
-	repository: 'Source',
+	repository: 'GitHub',
 	curseforge: 'CurseForge',
 	modrinth: 'Modrinth',
 	issues: 'Report an issue',

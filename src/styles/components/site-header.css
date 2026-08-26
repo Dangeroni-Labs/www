@@ -16,6 +16,9 @@
 }
 
 .site-header__brand {
+	display: inline-flex;
+	align-items: center;
+	line-height: 1;
 	font-size: var(--font-size-small);
 	font-family: var(--font-brand);
 	font-weight: var(--font-weight-semibold);
@@ -25,6 +28,7 @@
 }
 
 .site-header__links {
+	align-items: center;
 	display: flex;
 	gap: var(--content-gap);
 	margin: 0;
@@ -34,6 +38,18 @@
 	font-size: var(--font-size-small);
 	font-family: var(--font-heading);
 	font-size: var(--font-size-nav);
+	line-height: 1;
+}
+
+.site-header__links li {
+	display: flex;
+	align-items: center;
+}
+
+.site-header__links a {
+	display: inline-flex;
+	align-items: center;
+	line-height: 1;
 }
 
 @media (max-width: 38rem) {

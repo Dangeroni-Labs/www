@@ -8,8 +8,9 @@ loaders:
   - Fabric
 logo: kossman-stats
 featured: true
-repository: https://github.com/Dangeroni-Labs/kossman-stats
-issues: https://github.com/Dangeroni-Labs/kossman-stats/issues
+repository: https://github.com/Dangeroni-Labs/kossmanstats
+curseforge: https://www.curseforge.com/minecraft/mc-mods/kossman-stats
+issues: https://github.com/Dangeroni-Labs/kossmanstats/issues
 ---
 
 Kossman Stats keeps useful world information close without getting in the way.
