@@ -37,6 +37,25 @@
 	gap: var(--space-12);
 }
 
+.about-page__identity {
+	max-width: var(--content-width);
+	margin-top: var(--section-space);
+}
+
+.about-page__identity h2,
+.mod-page__body h2 {
+	margin: 0;
+	font-family: var(--font-heading);
+	font-size: var(--font-size-h2);
+	font-weight: var(--font-weight-semibold);
+	line-height: var(--line-height-heading);
+}
+
+.about-page__identity p {
+	margin: var(--space-4) 0 0;
+	color: var(--color-foreground-secondary);
+}
+
 .links-list {
 	margin: 0;
 	padding: 0;
@@ -63,6 +82,17 @@
 .links-list svg {
 	width: var(--size-icon-md);
 	height: var(--size-icon-md);
+}
+
+.links-list__content {
+	display: grid;
+	gap: var(--space-1);
+}
+
+.links-list__description {
+	color: var(--color-foreground-secondary);
+	font-family: var(--font-body);
+	font-size: var(--font-size-small);
 }
 
 .mod-page__hero {
@@ -118,6 +148,36 @@
 .mod-page__body {
 	margin-top: var(--space-8);
 	color: var(--color-foreground-secondary);
+}
+
+.mod-page__body > :first-child {
+	margin-top: 0;
+}
+
+.mod-page__body h2 {
+	margin-top: var(--space-12);
+}
+
+.mod-page__body p,
+.mod-page__body ul {
+	margin-block: var(--space-4);
+}
+
+.mod-page__body ul {
+	padding-left: var(--space-6);
+}
+
+.mod-page__body li + li {
+	margin-top: var(--space-2);
+}
+
+.mod-page__body code {
+	padding-inline: var(--space-1);
+	border-radius: var(--radius-sm);
+	background: var(--color-background-elevated);
+	color: var(--color-foreground);
+	font-family: var(--font-mono);
+	font-size: var(--font-size-small);
 }
 
 @media (max-width: 48rem) {

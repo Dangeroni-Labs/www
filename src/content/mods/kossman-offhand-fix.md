@@ -1,11 +1,12 @@
 ---
 title: Kossman's Offhand Fix
 slug: kossman-offhand-fix
-summary: A focused fix for a more reliable offhand experience.
+summary: Improves offhand stack handling by refilling compatible stacks before swapping.
 version: 1.0.0
-minecraftVersion: '1.21'
+minecraftVersion: '26.2'
 loaders:
   - Fabric
+  - NeoForge
 logo: kossman-offhand-fix
 featured: true
 repository: https://github.com/Dangeroni-Labs/offhand-fix
@@ -13,4 +14,30 @@ curseforge: https://www.curseforge.com/minecraft/mc-mods/kossmans-offhand-fix
 issues: https://github.com/Dangeroni-Labs/offhand-fix/issues
 ---
 
-Kossman's Offhand Fix smooths over a small interaction so it stays out of your way.
+A small QoL mod that makes offhand stack handling feel more natural.
+
+If your offhand already contains a compatible item stack, the mod can refill it instead of immediately moving or swapping the stack elsewhere.
+
+## Shift-click refill
+
+Shift-click a compatible stack in your inventory or a supported container to refill the existing offhand stack first.
+
+- Offhand: `Bread x50`
+- Inventory: `Bread x20`
+- Shift-click
+- Result: Offhand `Bread x64`, Inventory `Bread x6`
+
+## Smarter swap key
+
+Pressing the swap-hands key (`F` by default) refills a compatible offhand stack before performing a normal swap. This works both during gameplay and while hovering an inventory slot.
+
+## Vanilla fallback
+
+If refilling is not possible, Minecraft behaves normally. This includes:
+
+- Different items
+- Incompatible item components
+- Full offhand stacks
+- Non-stackable items
+- Normal inventory clicks
+- Hotbar number-key swaps

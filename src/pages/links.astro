@@ -23,7 +23,10 @@ import BaseLayout from '$/layouts/BaseLayout.astro'
 						<li>
 							<a href={social.href} rel="noreferrer" target="_blank">
 								<Icon aria-hidden="true" name={social.icon} />
-								<span>{social.label}</span>
+								<span class="links-list__content">
+									<span>{social.label}</span>
+									<span class="links-list__description">{social.description}</span>
+								</span>
 								<Icon aria-hidden="true" name="mdi:open-in-new" />
 							</a>
 						</li>

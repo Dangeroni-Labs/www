@@ -20,6 +20,16 @@ import { aboutImage } from '$/lib/site-assets'
 			</div>
 			<Image alt={ABOUT_CONTENT.imageAlt} class="about-page__image" src={aboutImage} />
 		</Container>
+		<Container class="about-page__identity">
+			<section aria-labelledby="about-identity-title">
+				<h2 id="about-identity-title">{ABOUT_CONTENT.identity.title}</h2>
+				{
+					ABOUT_CONTENT.identity.paragraphs.map(paragraph => (
+						<p>{paragraph}</p>
+					))
+				}
+			</section>
+		</Container>
 	</main>
 	<Footer />
 </BaseLayout>

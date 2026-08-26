@@ -1,17 +1,20 @@
 export const SOCIALS = [
 	{
 		label: 'GitHub',
+		description: 'Source code and repositories',
 		href: 'https://github.com/Dangeroni-Labs',
 		icon: 'simple-icons:github',
 	},
 	{
 		label: 'CurseForge',
-		href: 'https://www.curseforge.com/minecraft',
+		description: 'Minecraft mod releases',
+		href: 'https://www.curseforge.com/members/dangeroni/projects',
 		icon: 'simple-icons:curseforge',
 	},
 	{
 		label: 'Modrinth',
-		href: 'https://modrinth.com',
+		description: 'Minecraft mod releases',
+		href: 'https://modrinth.com/user/dangeroni',
 		icon: 'simple-icons:modrinth',
 	},
 ] as const
