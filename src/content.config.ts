@@ -11,6 +11,7 @@ const mods = defineCollection({
 		slug: z.string(),
 		summary: z.string(),
 		version: z.string(),
+		status: z.literal('Stable'),
 		minecraftVersion: z.string(),
 		loaders: z.array(z.string()).min(1),
 		logo: z.enum(['kossman-stats', 'renewable-lava', 'kossman-offhand-fix']),

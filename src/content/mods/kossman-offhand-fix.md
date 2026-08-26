@@ -2,7 +2,8 @@
 title: Kossman's Offhand Fix
 slug: kossman-offhand-fix
 summary: Improves offhand stack handling by refilling compatible stacks before swapping.
-version: 1.0.0
+version: 0.1.0
+status: Stable
 minecraftVersion: '26.2'
 loaders:
   - Fabric

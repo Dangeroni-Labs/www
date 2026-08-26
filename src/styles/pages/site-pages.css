@@ -115,7 +115,7 @@
 
 .mod-details {
 	display: grid;
-	grid-template-columns: repeat(3, minmax(0, 1fr));
+	grid-template-columns: repeat(4, minmax(0, 1fr));
 	gap: var(--space-4);
 	margin: 0;
 }
@@ -165,6 +165,24 @@
 
 .mod-page__body ul {
 	padding-left: var(--space-6);
+	list-style: none;
+}
+
+
+.mod-page__body li {
+	position: relative;
+	padding-left: var(--space-4);
+}
+
+.mod-page__body li::before {
+	position: absolute;
+	top: 0.65em;
+	left: 0;
+	width: var(--space-1);
+	height: var(--space-1);
+	border-radius: 50%;
+	background: var(--color-project-accent);
+	content: '';
 }
 
 .mod-page__body li + li {

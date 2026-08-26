@@ -7,7 +7,10 @@ import { SITE } from '$/const/site'
 
 <header class="site-header">
 	<Container class="site-header__inner">
-		<a class="site-header__brand" href="/">{SITE.shortName}</a>
+		<a aria-label={SITE.name} class="site-header__brand" href="/">
+			<span aria-hidden="true" class="site-header__brand-compact">DL</span>
+			<span aria-hidden="true" class="site-header__brand-full">{SITE.shortName}</span>
+		</a>
 		<nav aria-label={SITE.name}>
 			<ul class="site-header__links">
 				{

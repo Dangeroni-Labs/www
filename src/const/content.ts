@@ -12,7 +12,7 @@ export const HOME_CONTENT = {
 		eyebrow: 'About',
 		title: 'Dangeroni Labs.',
 		paragraphs: [
-			'Dangeroni Labs is the name I use for my Minecraft modding projects.',
+			'Minecraft mods, ports, continuations, and small fixes I wanted to exist.',
 			'Most of them start with something I wanted to use myself.',
 		],
 		action: 'More about Dangeroni Labs',
@@ -37,6 +37,7 @@ export const MODS_CONTENT = {
 	description: 'Minecraft mods, ports, continuations, and small experiments.',
 	details: 'Project details',
 	version: 'Version',
+	status: 'Status',
 	minecraftVersion: 'Minecraft',
 	loaders: 'Loaders',
 	repository: 'GitHub',
@@ -50,9 +51,9 @@ export const ABOUT_CONTENT = {
 	eyebrow: 'About',
 	title: 'Dangeroni Labs.',
 	paragraphs: [
-		'Dangeroni Labs is the name I use for my Minecraft modding projects.',
-		'I make mods because I enjoy working on them. Most of them start with something I wanted to use myself — a missing feature, an old mod I wanted to see on modern Minecraft, or a small annoyance I wanted to fix.',
-		'Not everything has to become a large project. Sometimes a small fix is enough.',
+		'I make Minecraft mods, ports, continuations, and small fixes that I want to use myself.',
+		'Most projects start with something that bothered me, something I missed from an older version of Minecraft, or simply something I thought would be useful to have.',
+		'Some projects stay small. Others grow over time.',
 	],
 	identity: {
 		title: 'Dangeroni & Kossman',
