@@ -2,21 +2,37 @@ const themePreferences = ['system', 'light', 'dark'] as const
 type ThemePreference = (typeof themePreferences)[number]
 
 const root = document.documentElement
-const menu = document.querySelector<HTMLElement>('[data-theme-menu]')
-const trigger = document.querySelector<HTMLButtonElement>(
-	'[data-theme-menu-trigger]',
-)
-const options = document.querySelector<HTMLElement>('[data-theme-menu-options]')
-const preferenceButtons = document.querySelectorAll<HTMLButtonElement>(
-	'[data-theme-option]',
-)
 const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)')
-const storageKey = root.dataset.themeStorageKey
+const themeWindow = window as Window & {
+	__dangeroniThemeListeners?: boolean
+}
 
 const isThemePreference = (value: string | null): value is ThemePreference =>
 	value === 'system' || value === 'light' || value === 'dark'
 
+const getPreference = (): ThemePreference => {
+	try {
+		const preference = window.localStorage.getItem(
+			root.dataset.themeStorageKey ?? '',
+		)
+
+		return isThemePreference(preference) ? preference : 'system'
+	} catch {
+		return 'system'
+	}
+}
+
+const getMenuElements = () => ({
+	menu: document.querySelector<HTMLElement>('[data-theme-menu]'),
+	options: document.querySelector<HTMLElement>('[data-theme-menu-options]'),
+	trigger: document.querySelector<HTMLButtonElement>(
+		'[data-theme-menu-trigger]',
+	),
+})
+
 const setMenuOpen = (isOpen: boolean, restoreFocus = false) => {
+	const { options, trigger } = getMenuElements()
+
 	if (!trigger || !options) {
 		return
 	}
@@ -40,7 +56,9 @@ const applyTheme = (preference: ThemePreference) => {
 	root.dataset.themePreference = preference
 	root.dataset.theme = theme
 
-	for (const button of preferenceButtons) {
+	for (const button of document.querySelectorAll<HTMLButtonElement>(
+		'[data-theme-option]',
+	)) {
 		button.setAttribute(
 			'aria-checked',
 			String(button.dataset.themePreference === preference),
@@ -48,49 +66,73 @@ const applyTheme = (preference: ThemePreference) => {
 	}
 }
 
-if (trigger && options && menu) {
-	trigger.addEventListener('click', () => {
-		setMenuOpen(options.hidden)
-	})
+const initializeTheme = () => {
+	applyTheme(getPreference())
+	setMenuOpen(false)
+}
 
-	for (const button of preferenceButtons) {
-		button.addEventListener('click', () => {
-			const preference = button.dataset.themePreference
+const savePreference = (preference: ThemePreference) => {
+	try {
+		window.localStorage.setItem(root.dataset.themeStorageKey ?? '', preference)
+	} catch {}
+}
 
-			if (!isThemePreference(preference)) {
-				return
+if (!themeWindow.__dangeroniThemeListeners) {
+	document.addEventListener('click', event => {
+		if (!(event.target instanceof Element)) {
+			return
+		}
+
+		const preferenceButton = event.target.closest<HTMLButtonElement>(
+			'[data-theme-option]',
+		)
+
+		if (preferenceButton) {
+			const preference = preferenceButton.dataset.themePreference
+
+			if (isThemePreference(preference)) {
+				savePreference(preference)
+				applyTheme(preference)
+				setMenuOpen(false, true)
 			}
 
-			try {
-				window.localStorage.setItem(storageKey ?? '', preference)
-			} catch {}
+			return
+		}
 
-			applyTheme(preference)
-			setMenuOpen(false, true)
-		})
-	}
+		const trigger = event.target.closest<HTMLButtonElement>(
+			'[data-theme-menu-trigger]',
+		)
 
-	document.addEventListener('pointerdown', event => {
-		if (!menu.contains(event.target as Node)) {
+		if (trigger) {
+			const { options } = getMenuElements()
+			setMenuOpen(options?.hidden ?? false)
+
+			return
+		}
+
+		const { menu } = getMenuElements()
+		if (!menu?.contains(event.target)) {
 			setMenuOpen(false)
 		}
 	})
 
 	document.addEventListener('keydown', event => {
-		if (event.key === 'Escape' && !options.hidden) {
+		const { options } = getMenuElements()
+
+		if (event.key === 'Escape' && options && !options.hidden) {
 			setMenuOpen(false, true)
 		}
 	})
 
-	applyTheme(
-		isThemePreference(root.dataset.themePreference)
-			? root.dataset.themePreference
-			: 'system',
-	)
+	mediaQuery.addEventListener('change', () => {
+		if (getPreference() === 'system') {
+			applyTheme('system')
+		}
+	})
+
+	document.addEventListener('astro:after-swap', initializeTheme)
+	document.addEventListener('astro:page-load', initializeTheme)
+	themeWindow.__dangeroniThemeListeners = true
 }
 
-mediaQuery.addEventListener('change', () => {
-	if (root.dataset.themePreference === 'system') {
-		applyTheme('system')
-	}
-})
+initializeTheme()
