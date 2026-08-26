@@ -75,6 +75,7 @@ html[data-theme-preference='dark'] .theme-switch__icon--dark {
 }
 
 .theme-menu__options button:hover,
+.theme-menu__options button:focus-visible,
 .theme-menu__options button[aria-checked='true'] {
 	background: var(--color-background-hover);
 	color: var(--color-foreground);

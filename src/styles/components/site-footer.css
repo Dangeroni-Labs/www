@@ -6,6 +6,7 @@
 
 .site-footer__inner {
 	display: flex;
+	align-items: center;
 	flex-wrap: wrap;
 	justify-content: space-between;
 	gap: var(--content-gap);
@@ -33,9 +34,15 @@
 	color: var(--color-accent);
 }
 
+.site-footer__links a:hover svg,
+.site-footer__links a:focus-visible svg {
+	transform: translateX(var(--space-1));
+}
+
 .site-footer__links svg {
 	width: var(--size-icon-sm);
 	height: var(--size-icon-sm);
+	transition: transform var(--duration-fast) var(--ease-standard);
 }
 
 .site-footer p {

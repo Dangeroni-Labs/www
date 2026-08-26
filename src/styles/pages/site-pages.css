@@ -77,11 +77,18 @@
 .links-list a:hover,
 .links-list a:focus-visible {
 	color: var(--color-project-accent);
+	border-color: var(--color-project-accent);
 }
 
 .links-list svg {
 	width: var(--size-icon-md);
 	height: var(--size-icon-md);
+	transition: transform var(--duration-fast) var(--ease-standard);
+}
+
+.links-list a:hover svg:last-child,
+.links-list a:focus-visible svg:last-child {
+	transform: translate(var(--space-1), calc(var(--space-1) * -1));
 }
 
 .links-list__content {
@@ -142,11 +149,11 @@
 	display: flex;
 	flex-wrap: wrap;
 	gap: var(--space-4);
-	margin-top: var(--space-8);
+	margin-top: var(--space-6);
 }
 
 .mod-page__body {
-	margin-top: var(--space-8);
+	margin-top: var(--space-12);
 	color: var(--color-foreground-secondary);
 }
 

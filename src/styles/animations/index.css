@@ -10,3 +10,26 @@
 		transform: translateY(var(--space-2));
 	}
 }
+
+@media (prefers-reduced-motion: no-preference) {
+	::view-transition-old(root) {
+		animation: page-transition-out var(--duration-fast) var(--ease-standard) both;
+	}
+
+	::view-transition-new(root) {
+		animation: page-transition-in var(--duration-normal) var(--ease-standard) both;
+	}
+}
+
+@keyframes page-transition-out {
+	to {
+		opacity: 0;
+	}
+}
+
+@keyframes page-transition-in {
+	from {
+		opacity: 0;
+		transform: translateY(var(--space-1));
+	}
+}

@@ -15,7 +15,8 @@
 	transition: background var(--duration-normal) var(--ease-standard), border-color var(--duration-normal) var(--ease-standard);
 }
 
-.mod-card:hover {
+.mod-card:hover,
+.mod-card:focus-visible {
 	border-color: var(--color-project-accent);
 	background: var(--color-background-hover);
 }
@@ -27,7 +28,8 @@
 	transition: transform var(--duration-normal) var(--ease-standard);
 }
 
-.mod-card:hover .mod-card__logo {
+.mod-card:hover .mod-card__logo,
+.mod-card:focus-visible .mod-card__logo {
 	transform: scale(1.02);
 }
 
@@ -58,7 +60,8 @@
 	transition: transform var(--duration-fast) var(--ease-standard);
 }
 
-.mod-card:hover .mod-card__arrow {
+.mod-card:hover .mod-card__arrow,
+.mod-card:focus-visible .mod-card__arrow {
 	transform: translateX(var(--space-2));
 }
 

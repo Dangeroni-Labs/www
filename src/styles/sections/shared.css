@@ -31,7 +31,16 @@
 	font-weight: var(--font-weight-semibold);
 }
 
+.text-link svg {
+	transition: transform var(--duration-fast) var(--ease-standard);
+}
+
 .text-link:hover,
 .text-link:focus-visible {
 	color: var(--color-accent-strong);
+}
+
+.text-link:hover svg,
+.text-link:focus-visible svg {
+	transform: translateX(var(--space-1));
 }

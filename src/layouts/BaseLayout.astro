@@ -1,4 +1,6 @@
 ---
+import { ClientRouter } from 'astro:transitions'
+
 import { SITE, THEME_STORAGE_KEY } from '$/const/site'
 import '$/styles/global.css'
 
@@ -20,6 +22,7 @@ const pageTitle =
 		<meta name="description" content={description} />
 		<meta name="theme-color" content={SITE.themeColor} />
 		<title>{pageTitle}</title>
+		<ClientRouter />
 		<script is:inline>
 			(() => {
 				const root = document.documentElement
