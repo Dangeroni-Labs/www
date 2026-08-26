@@ -1,0 +1,5 @@
+:root {
+	--page-width: 80rem;
+	--content-width: 44rem;
+	--page-gutter: clamp(var(--space-4), 4vw, var(--space-8));
+}

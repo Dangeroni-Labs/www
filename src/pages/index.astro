@@ -1,15 +1,20 @@
 ---
-
+import Footer from '$/components/shared/Footer.astro'
+import Header from '$/components/shared/Header.astro'
+import Container from '$/components/ui/Container.astro'
+import { HOME_CONTENT } from '$/const/content'
+import { SITE } from '$/const/site'
+import BaseLayout from '$/layouts/BaseLayout.astro'
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<BaseLayout title={SITE.name}>
+	<Header />
+	<main class="home-main">
+		<Container as="section" class="home-intro" data-motion="fade-in">
+			<p class="home-intro__eyebrow">{HOME_CONTENT.eyebrow}</p>
+			<h1>{HOME_CONTENT.title}</h1>
+			<p class="home-intro__description">{HOME_CONTENT.description}</p>
+		</Container>
+	</main>
+	<Footer />
+</BaseLayout>

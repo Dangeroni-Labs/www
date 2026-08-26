@@ -1,0 +1,12 @@
+@theme {
+	--color-background: #121314;
+	--color-background-elevated: #1a1b1d;
+	--color-background-hover: #222427;
+	--color-foreground: #f3f4f4;
+	--color-foreground-secondary: #b7b9bc;
+	--color-foreground-muted: #85898d;
+	--color-border: #2c2f32;
+	--color-border-strong: #44484d;
+	--color-accent: #d6d8da;
+	--color-accent-soft: #292b2e;
+}

@@ -1,0 +1,22 @@
+---
+import Container from '$/components/ui/Container.astro'
+import { PRIMARY_NAVIGATION } from '$/const/navigation'
+import { SITE } from '$/const/site'
+---
+
+<header class="site-header">
+	<Container class="site-header__inner">
+		<a class="site-header__brand" href="/">{SITE.name}</a>
+		<nav aria-label={SITE.name}>
+			<ul class="site-header__links">
+				{
+					PRIMARY_NAVIGATION.map(item => (
+						<li>
+							<a href={item.href}>{item.label}</a>
+						</li>
+					))
+				}
+			</ul>
+		</nav>
+	</Container>
+</header>

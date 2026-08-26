@@ -1,0 +1,12 @@
+@media (prefers-reduced-motion: no-preference) {
+	[data-motion='fade-in'] {
+		animation: fade-in var(--duration-normal) var(--ease-standard) both;
+	}
+}
+
+@keyframes fade-in {
+	from {
+		opacity: 0;
+		transform: translateY(var(--space-2));
+	}
+}

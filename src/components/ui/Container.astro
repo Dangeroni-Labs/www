@@ -1,0 +1,12 @@
+---
+interface Props {
+	as?: 'div' | 'section'
+	class?: string
+}
+
+const { as: Element = 'div', class: className } = Astro.props
+---
+
+<Element class:list={['container', className]}>
+	<slot />
+</Element>

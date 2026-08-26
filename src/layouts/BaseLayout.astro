@@ -1,0 +1,25 @@
+---
+import { SITE } from '$/const/site'
+import '$/styles/global.css'
+
+interface Props {
+	title?: string
+	description?: string
+}
+
+const { title = SITE.name, description = SITE.description } = Astro.props
+---
+
+<!doctype html>
+<html lang={SITE.language}>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width" />
+		<meta name="description" content={description} />
+		<meta name="theme-color" content={SITE.themeColor} />
+		<title>{title}</title>
+	</head>
+	<body>
+		<slot />
+	</body>
+</html>
