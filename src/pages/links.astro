@@ -1,0 +1,36 @@
+---
+import { Icon } from 'astro-icon/components'
+
+import Footer from '$/components/shared/Footer.astro'
+import Header from '$/components/shared/Header.astro'
+import Container from '$/components/ui/Container.astro'
+import { LINKS_CONTENT } from '$/const/content'
+import { SOCIALS } from '$/const/socials'
+import BaseLayout from '$/layouts/BaseLayout.astro'
+---
+
+<BaseLayout title={LINKS_CONTENT.eyebrow}>
+	<Header />
+	<main class="page-main">
+		<Container class="page-intro">
+			<p class="section-eyebrow">{LINKS_CONTENT.eyebrow}</p>
+			<h1>{LINKS_CONTENT.title}</h1>
+		</Container>
+		<Container class="page-content">
+			<ul class="links-list">
+				{
+					SOCIALS.map(social => (
+						<li>
+							<a href={social.href} rel="noreferrer" target="_blank">
+								<Icon aria-hidden="true" name={social.icon} />
+								<span>{social.label}</span>
+								<Icon aria-hidden="true" name="mdi:open-in-new" />
+							</a>
+						</li>
+					))
+				}
+			</ul>
+		</Container>
+	</main>
+	<Footer />
+</BaseLayout>

@@ -12,6 +12,27 @@
 	padding-block: var(--space-6);
 }
 
+.site-footer__links {
+	display: flex;
+	flex-wrap: wrap;
+	gap: var(--content-gap);
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+.site-footer__links a {
+	display: inline-flex;
+	align-items: center;
+	gap: var(--space-2);
+	text-decoration: none;
+}
+
+.site-footer__links svg {
+	width: var(--size-icon-sm);
+	height: var(--size-icon-sm);
+}
+
 .site-footer p {
 	margin: 0;
 }

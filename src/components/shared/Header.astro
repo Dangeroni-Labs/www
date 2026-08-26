@@ -1,4 +1,5 @@
 ---
+import ThemeSwitch from '$/components/shared/ThemeSwitch.astro'
 import Container from '$/components/ui/Container.astro'
 import { PRIMARY_NAVIGATION } from '$/const/navigation'
 import { SITE } from '$/const/site'
@@ -6,7 +7,7 @@ import { SITE } from '$/const/site'
 
 <header class="site-header">
 	<Container class="site-header__inner">
-		<a class="site-header__brand" href="/">{SITE.name}</a>
+		<a class="site-header__brand" href="/">{SITE.shortName}</a>
 		<nav aria-label={SITE.name}>
 			<ul class="site-header__links">
 				{
@@ -16,7 +17,14 @@ import { SITE } from '$/const/site'
 						</li>
 					))
 				}
+				<li>
+					<ThemeSwitch />
+				</li>
 			</ul>
 		</nav>
 	</Container>
 </header>
+
+<script>
+	import '$/scripts/theme-switch'
+</script>

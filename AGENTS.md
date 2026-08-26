@@ -8,6 +8,7 @@
 - Biome for formatting and linting
 - Fontsource for local typography
 - React only when a client island is necessary
+- Iconify through `astro-icon`
 
 ## Architecture
 
@@ -54,6 +55,16 @@ UI components should normally remain below 150 lines and logic modules below 200
 - Do not duplicate token definitions.
 - Prefer CSS for presentation-only effects and honor reduced-motion settings.
 
+## Typography, Themes, and Icons
+
+- Load fonts through Fontsource only: Fusion Pixel is brand-only, Kode Mono is
+  for headings and navigation, and Albert Sans is for body text.
+- The site supports `system`, `light`, and `dark` preferences. Themes SHALL use
+  semantic tokens; raw palette colors belong only in `src/styles/tokens/`.
+- Preserve the `dangeroni-theme` localStorage preference and system-theme change
+  behavior. Do not add a theme library or React for theme controls.
+- Use Iconify through `astro-icon`. DO NOT add or import Lucide.
+
 ## Astro Component Discipline
 
 - Astro component files SHOULD contain frontmatter wiring, semantic markup, and
@@ -82,6 +93,15 @@ UI components should normally remain below 150 lines and logic modules below 200
   `features/`.
 - Use strict types, explicit domain types, and `$/*` absolute imports.
 - Avoid `any` and duplicated types.
+
+## Routes and Content
+
+- The current public routes are `/`, `/mods`, `/mods/[slug]`, `/about`, and
+  `/links`.
+- Mod metadata SHALL come from the `mods` Astro content collection. Do not
+  duplicate it in page or component files.
+- Per-project source, download, demo, and issue/report links belong on the mod
+  detail page. Do not add global support routes or links.
 
 ## Accessibility
 

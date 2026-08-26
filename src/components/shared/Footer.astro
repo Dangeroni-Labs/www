@@ -1,11 +1,24 @@
 ---
+import { Icon } from 'astro-icon/components'
 import Container from '$/components/ui/Container.astro'
 import { FOOTER_CONTENT } from '$/const/content'
+import { SOCIALS } from '$/const/socials'
 ---
 
 <footer class="site-footer">
 	<Container class="site-footer__inner">
 		<p>{FOOTER_CONTENT.statement}</p>
-		<p>{FOOTER_CONTENT.copyright}</p>
+		<ul class="site-footer__links">
+			{
+				SOCIALS.map(social => (
+					<li>
+						<a href={social.href} rel="noreferrer" target="_blank">
+							<Icon aria-hidden="true" name={social.icon} />
+							<span>{social.label}</span>
+						</a>
+					</li>
+				))
+			}
+		</ul>
 	</Container>
 </footer>

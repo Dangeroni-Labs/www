@@ -1,0 +1,25 @@
+---
+import { Image } from 'astro:assets'
+
+import Footer from '$/components/shared/Footer.astro'
+import Header from '$/components/shared/Header.astro'
+import Container from '$/components/ui/Container.astro'
+import { ABOUT_CONTENT } from '$/const/content'
+import BaseLayout from '$/layouts/BaseLayout.astro'
+import { aboutImage } from '$/lib/site-assets'
+---
+
+<BaseLayout title={ABOUT_CONTENT.eyebrow} description={ABOUT_CONTENT.paragraphs[0]}>
+	<Header />
+	<main class="page-main about-page">
+		<Container class="about-page__inner">
+			<div>
+				<p class="section-eyebrow">{ABOUT_CONTENT.eyebrow}</p>
+				<h1>{ABOUT_CONTENT.title}</h1>
+				{ABOUT_CONTENT.paragraphs.map(paragraph => <p>{paragraph}</p>)}
+			</div>
+			<Image alt={ABOUT_CONTENT.imageAlt} class="about-page__image" src={aboutImage} />
+		</Container>
+	</main>
+	<Footer />
+</BaseLayout>

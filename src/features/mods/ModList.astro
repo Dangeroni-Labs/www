@@ -1,0 +1,26 @@
+---
+import ModCard from '$/components/ui/ModCard.astro'
+import { getModLogo } from '$/lib/mod-assets'
+import type { ModEntry } from '$/lib/mods'
+
+interface Props {
+	mods: ModEntry[]
+}
+
+const { mods } = Astro.props
+---
+
+<div class="mod-list">
+	{
+		mods.map(mod => (
+			<ModCard
+				href={`/mods/${mod.data.slug}`}
+				logo={getModLogo(mod.data.logo)}
+				logoAlt={mod.data.title}
+				metadata={`${mod.data.minecraftVersion} · ${mod.data.loaders.join(', ')}`}
+				summary={mod.data.summary}
+				title={mod.data.title}
+			/>
+		))
+	}
+</div>

@@ -4,17 +4,24 @@ import Header from '$/components/shared/Header.astro'
 import Container from '$/components/ui/Container.astro'
 import { HOME_CONTENT } from '$/const/content'
 import { SITE } from '$/const/site'
+import AboutTeaser from '$/features/home/AboutTeaser.astro'
+import FeaturedMods from '$/features/home/FeaturedMods.astro'
 import BaseLayout from '$/layouts/BaseLayout.astro'
+import { getFeaturedMods } from '$/lib/mods'
+
+const featuredMods = await getFeaturedMods()
 ---
 
 <BaseLayout title={SITE.name}>
 	<Header />
-	<main class="home-main">
-		<Container as="section" class="home-intro" data-motion="fade-in">
+	<main>
+		<Container as="section" class="home-hero" data-motion="fade-in">
 			<p class="home-intro__eyebrow">{HOME_CONTENT.eyebrow}</p>
 			<h1>{HOME_CONTENT.title}</h1>
 			<p class="home-intro__description">{HOME_CONTENT.description}</p>
 		</Container>
+		<FeaturedMods mods={featuredMods} />
+		<AboutTeaser />
 	</main>
 	<Footer />
 </BaseLayout>

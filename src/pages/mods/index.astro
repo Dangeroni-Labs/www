@@ -1,0 +1,25 @@
+---
+import Footer from '$/components/shared/Footer.astro'
+import Header from '$/components/shared/Header.astro'
+import Container from '$/components/ui/Container.astro'
+import { MODS_CONTENT } from '$/const/content'
+import ModList from '$/features/mods/ModList.astro'
+import BaseLayout from '$/layouts/BaseLayout.astro'
+import { getAllMods } from '$/lib/mods'
+
+const mods = await getAllMods()
+---
+
+<BaseLayout title={MODS_CONTENT.title} description={MODS_CONTENT.description}>
+	<Header />
+	<main class="page-main">
+		<Container class="page-intro">
+			<h1>{MODS_CONTENT.title}</h1>
+			<p>{MODS_CONTENT.description}</p>
+		</Container>
+		<Container class="page-content">
+			<ModList mods={mods} />
+		</Container>
+	</main>
+	<Footer />
+</BaseLayout>

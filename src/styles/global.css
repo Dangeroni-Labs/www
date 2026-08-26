@@ -1,8 +1,11 @@
-@import '@fontsource-variable/inter';
+@import '@fontsource/fusion-pixel-10px-monospaced-tc';
+@import '@fontsource-variable/kode-mono';
+@import '@fontsource-variable/albert-sans';
 @import 'tailwindcss';
 @import './tokens/index.css';
 @import './animations/index.css';
 @import './components/index.css';
+@import './sections/index.css';
 @import './pages/index.css';
 
 *,
@@ -14,7 +17,7 @@
 html {
 	background: var(--color-background);
 	color: var(--color-foreground);
-	font-family: var(--font-sans);
+	font-family: var(--font-body);
 	font-synthesis: none;
 	text-rendering: optimizeLegibility;
 	-webkit-font-smoothing: antialiased;
@@ -64,7 +67,7 @@ button {
 }
 
 :focus-visible {
-	outline: 2px solid var(--color-accent);
+	outline: 2px solid var(--color-focus);
 	outline-offset: var(--space-1);
 }
 

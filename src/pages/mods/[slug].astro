@@ -1,0 +1,110 @@
+---
+import { Image } from 'astro:assets'
+import { render } from 'astro:content'
+import { Icon } from 'astro-icon/components'
+
+import Footer from '$/components/shared/Footer.astro'
+import Header from '$/components/shared/Header.astro'
+import Container from '$/components/ui/Container.astro'
+import { MODS_CONTENT } from '$/const/content'
+import BaseLayout from '$/layouts/BaseLayout.astro'
+import { getModLogo } from '$/lib/mod-assets'
+import { getAllMods, type ModEntry } from '$/lib/mods'
+
+export async function getStaticPaths() {
+	const mods = await getAllMods()
+
+	return mods.map(entry => ({
+		params: { slug: entry.data.slug },
+		props: { entry },
+	}))
+}
+
+interface Props {
+	entry: ModEntry
+}
+
+const { entry } = Astro.props
+const { Content } = await render(entry)
+const { data } = entry
+const links = [
+	{
+		href: data.repository,
+		icon: 'simple-icons:github',
+		label: MODS_CONTENT.repository,
+	},
+	...(data.curseforge
+		? [
+				{
+					href: data.curseforge,
+					icon: 'simple-icons:curseforge',
+					label: MODS_CONTENT.curseforge,
+				},
+			]
+		: []),
+	...(data.modrinth
+		? [
+				{
+					href: data.modrinth,
+					icon: 'simple-icons:modrinth',
+					label: MODS_CONTENT.modrinth,
+				},
+			]
+		: []),
+	...(data.demo
+		? [{ href: data.demo, icon: 'mdi:open-in-new', label: MODS_CONTENT.demo }]
+		: []),
+]
+---
+
+<BaseLayout title={data.title} description={data.summary}>
+	<Header />
+	<main class="page-main mod-page">
+		<Container class="mod-page__hero">
+			<Image alt={data.title} class="mod-page__logo" src={getModLogo(data.logo)} />
+			<div>
+				<p class="section-eyebrow">{data.minecraftVersion}</p>
+				<h1>{data.title}</h1>
+				<p class="mod-page__summary">{data.summary}</p>
+			</div>
+		</Container>
+		<Container class="mod-page__content">
+			<dl class="mod-details">
+				<div>
+					<dt>{MODS_CONTENT.version}</dt>
+					<dd>{data.version}</dd>
+				</div>
+				<div>
+					<dt>{MODS_CONTENT.minecraftVersion}</dt>
+					<dd>{data.minecraftVersion}</dd>
+				</div>
+				<div>
+					<dt>{MODS_CONTENT.loaders}</dt>
+					<dd>{data.loaders.join(', ')}</dd>
+				</div>
+			</dl>
+			<div class="mod-page__actions">
+				{
+					links.map(link => (
+						<a class="text-link" href={link.href} rel="noreferrer" target="_blank">
+							<Icon aria-hidden="true" name={link.icon} />
+							{link.label}
+						</a>
+					))
+				}
+				{
+					data.issues && (
+						<a class="text-link" href={data.issues} rel="noreferrer" target="_blank">
+							<Icon aria-hidden="true" name="mdi:bug-outline" />
+							{MODS_CONTENT.issues}
+						</a>
+					)
+				}
+			</div>
+			<article class="mod-page__body">
+				<Content />
+			</article>
+		</Container>
+	</main>
+	<Footer />
+</BaseLayout>

@@ -1,5 +1,5 @@
 ---
-import { SITE } from '$/const/site'
+import { SITE, THEME_STORAGE_KEY } from '$/const/site'
 import '$/styles/global.css'
 
 interface Props {
@@ -11,13 +11,31 @@ const { title = SITE.name, description = SITE.description } = Astro.props
 ---
 
 <!doctype html>
-<html lang={SITE.language}>
+<html lang={SITE.language} data-theme-storage-key={THEME_STORAGE_KEY}>
 	<head>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width" />
 		<meta name="description" content={description} />
 		<meta name="theme-color" content={SITE.themeColor} />
 		<title>{title}</title>
+		<script is:inline>
+			(() => {
+				const root = document.documentElement
+				const storageKey = root.dataset.themeStorageKey
+				let preference = 'system'
+
+				try {
+					const stored = window.localStorage.getItem(storageKey)
+					if (stored === 'light' || stored === 'dark' || stored === 'system') {
+						preference = stored
+					}
+				} catch {}
+
+				const isDark = window.matchMedia('(prefers-color-scheme: dark)').matches
+				root.dataset.themePreference = preference
+				root.dataset.theme = preference === 'system' ? (isDark ? 'dark' : 'light') : preference
+			})()
+		</script>
 	</head>
 	<body>
 		<slot />

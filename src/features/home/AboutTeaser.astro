@@ -1,0 +1,21 @@
+---
+import { Image } from 'astro:assets'
+
+import Container from '$/components/ui/Container.astro'
+import { HOME_CONTENT } from '$/const/content'
+import { aboutImage } from '$/lib/site-assets'
+---
+
+<section class="about-teaser" aria-labelledby="about-teaser-title">
+	<Container class="about-teaser__inner">
+		<div class="about-teaser__content">
+			<p class="section-eyebrow">{HOME_CONTENT.about.eyebrow}</p>
+			<h2 id="about-teaser-title">{HOME_CONTENT.about.title}</h2>
+			{
+				HOME_CONTENT.about.paragraphs.map(paragraph => <p>{paragraph}</p>)
+			}
+			<a class="text-link" href="/about">{HOME_CONTENT.about.action}</a>
+		</div>
+		<Image alt={HOME_CONTENT.about.imageAlt} class="about-teaser__image" src={aboutImage} />
+	</Container>
+</section>

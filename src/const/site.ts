@@ -1,7 +1,10 @@
 export const SITE = {
 	name: 'Dangeroni Labs',
+	shortName: 'dangeroni labs',
 	description:
-		'An independent studio creating considered Minecraft experiences.',
+		'Warm, considered Minecraft mods and small experiments from Ukraine.',
 	language: 'en',
-	themeColor: '#121314',
+	themeColor: '#171414',
 } as const
+
+export const THEME_STORAGE_KEY = 'dangeroni-theme'

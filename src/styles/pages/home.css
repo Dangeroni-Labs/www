@@ -1,26 +1,25 @@
-.home-main {
+.home-hero {
 	display: grid;
-	min-height: calc(100svh - var(--size-header));
-}
-
-.home-intro {
-	align-self: center;
+	align-content: center;
+	min-height: var(--hero-min-height);
 	max-width: var(--content-width);
 	padding-block: var(--section-space);
 }
 
 .home-intro__eyebrow {
 	margin: 0 0 var(--space-4);
-	color: var(--color-foreground-secondary);
-	font-size: var(--font-size-meta);
+	color: var(--color-project-accent);
+	font-family: var(--font-heading);
+	font-size: var(--font-size-eyebrow);
 	font-weight: var(--font-weight-semibold);
 	letter-spacing: var(--letter-spacing-meta);
 	text-transform: uppercase;
 }
 
-.home-intro h1 {
+.home-hero h1 {
 	margin: 0;
-	font-size: var(--font-size-heading);
+	font-family: var(--font-heading);
+	font-size: var(--font-size-h1);
 	font-weight: var(--font-weight-semibold);
 	line-height: var(--line-height-heading);
 	letter-spacing: -0.04em;

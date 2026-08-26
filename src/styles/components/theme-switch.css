@@ -1,0 +1,39 @@
+.theme-switch {
+	display: inline-grid;
+	width: var(--size-control);
+	height: var(--size-control);
+	place-items: center;
+	border: 1px solid var(--color-border);
+	border-radius: var(--radius-sm);
+	background: var(--color-background-elevated);
+	color: var(--color-foreground-secondary);
+	cursor: pointer;
+	transition: background var(--duration-fast) var(--ease-standard), color var(--duration-fast) var(--ease-standard), border-color var(--duration-fast) var(--ease-standard);
+}
+
+.theme-switch:hover {
+	border-color: var(--color-border-strong);
+	background: var(--color-background-hover);
+	color: var(--color-foreground);
+}
+
+.theme-switch__icon {
+	display: none;
+	width: var(--size-icon-md);
+	height: var(--size-icon-md);
+}
+
+html[data-theme-preference='system'] .theme-switch__icon--system,
+html[data-theme-preference='light'] .theme-switch__icon--light,
+html[data-theme-preference='dark'] .theme-switch__icon--dark {
+	display: block;
+}
+
+.theme-switch__label {
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	overflow: hidden;
+	clip: rect(0 0 0 0);
+	white-space: nowrap;
+}

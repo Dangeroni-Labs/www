@@ -1,5 +1,10 @@
 .site-header {
+	position: sticky;
+	top: 0;
+	z-index: 10;
+	background: color-mix(in srgb, var(--color-background) 92%, transparent);
 	border-bottom: 1px solid var(--color-border);
+	backdrop-filter: blur(var(--space-3));
 }
 
 .site-header__inner {
@@ -12,6 +17,7 @@
 
 .site-header__brand {
 	font-size: var(--font-size-small);
+	font-family: var(--font-brand);
 	font-weight: var(--font-weight-semibold);
 	letter-spacing: var(--letter-spacing-meta);
 	text-decoration: none;
@@ -26,4 +32,20 @@
 	list-style: none;
 	color: var(--color-foreground-secondary);
 	font-size: var(--font-size-small);
+	font-family: var(--font-heading);
+	font-size: var(--font-size-nav);
+}
+
+@media (max-width: 38rem) {
+	.site-header__inner {
+		align-items: flex-start;
+		flex-direction: column;
+		justify-content: center;
+		padding-block: var(--space-3);
+	}
+
+	.site-header__links {
+		width: 100%;
+		justify-content: space-between;
+	}
 }
