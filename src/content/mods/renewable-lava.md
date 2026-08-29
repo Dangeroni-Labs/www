@@ -2,12 +2,13 @@
 title: Renewable Lava
 slug: renewable-lava
 summary: Vanilla-style renewable lava source generation for Minecraft.
-version: 0.1.0
-status: Stable
-minecraftVersion: '26.2'
-loaders:
-  - Fabric
-  - NeoForge
+versions:
+  - minecraft: '26.2'
+    version: 0.1.0
+    status: Stable
+    loaders:
+      - Fabric
+      - NeoForge
 logo: renewable-lava
 featured: true
 repository: https://github.com/Dangeroni-Labs/renewable-lava

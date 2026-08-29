@@ -50,6 +50,8 @@
 }
 
 .mod-card__metadata {
+	display: grid;
+	gap: var(--space-1);
 	font-size: var(--font-size-small);
 }
 

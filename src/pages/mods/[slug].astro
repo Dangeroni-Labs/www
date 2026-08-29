@@ -9,6 +9,11 @@ import Container from '$/components/ui/Container.astro'
 import { MODS_CONTENT } from '$/const/content'
 import BaseLayout from '$/layouts/BaseLayout.astro'
 import { getModLogo } from '$/lib/mod-assets'
+import {
+	formatLoaders,
+	formatMinecraftSupportSummary,
+	formatVersionRelease,
+} from '$/lib/mod-compatibility'
 import { getAllMods, type ModEntry } from '$/lib/mods'
 
 export async function getStaticPaths() {
@@ -27,6 +32,7 @@ interface Props {
 const { entry } = Astro.props
 const { Content } = await render(entry)
 const { data } = entry
+const minecraftSupport = formatMinecraftSupportSummary(data.versions)
 const links = [
 	...(data.curseforge
 		? [
@@ -63,30 +69,28 @@ const links = [
 		<Container class="mod-page__hero">
 			<Image alt={data.title} class="mod-page__logo" src={getModLogo(data.logo)} />
 			<div>
-				<p class="section-eyebrow">{data.minecraftVersion}</p>
+				<p class="section-eyebrow">{minecraftSupport}</p>
 				<h1>{data.title}</h1>
 				<p class="mod-page__summary">{data.summary}</p>
 			</div>
 		</Container>
 		<Container class="mod-page__content">
-			<dl class="mod-details">
-				<div>
-					<dt>{MODS_CONTENT.version}</dt>
-					<dd>{data.version}</dd>
+			<section class="mod-versions" aria-labelledby="mod-versions-title">
+				<h2 id="mod-versions-title">{MODS_CONTENT.versions}</h2>
+				<div class="mod-versions__list">
+					{
+						data.versions.map(version => (
+							<div class="mod-versions__item">
+								<p class="mod-versions__minecraft">{version.minecraft}</p>
+								<div class="mod-versions__details">
+									<p>{formatVersionRelease(version)}</p>
+									<p>{formatLoaders(version)}</p>
+								</div>
+							</div>
+						))
+					}
 				</div>
-				<div>
-					<dt>{MODS_CONTENT.status}</dt>
-					<dd>{data.status}</dd>
-				</div>
-				<div>
-					<dt>{MODS_CONTENT.minecraftVersion}</dt>
-					<dd>{data.minecraftVersion}</dd>
-				</div>
-				<div>
-					<dt>{MODS_CONTENT.loaders}</dt>
-					<dd>{data.loaders.join(', ')}</dd>
-				</div>
-			</dl>
+			</section>
 			<div class="mod-page__actions">
 				{
 					links.map(link => (

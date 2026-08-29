@@ -1,6 +1,7 @@
 ---
 import ModCard from '$/components/ui/ModCard.astro'
 import { getModLogo } from '$/lib/mod-assets'
+import { formatModCardCompatibility } from '$/lib/mod-compatibility'
 import type { ModEntry } from '$/lib/mods'
 
 interface Props {
@@ -17,7 +18,7 @@ const { mods } = Astro.props
 				href={`/mods/${mod.data.slug}`}
 				logo={getModLogo(mod.data.logo)}
 				logoAlt={mod.data.title}
-				metadata={`${mod.data.minecraftVersion} · ${mod.data.loaders.join(', ')}`}
+				metadata={formatModCardCompatibility(mod.data.versions)}
 				summary={mod.data.summary}
 				title={mod.data.title}
 			/>

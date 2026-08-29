@@ -7,7 +7,7 @@ interface Props {
 	href: string
 	logo: ImageMetadata
 	logoAlt: string
-	metadata: string
+	metadata: string[]
 	summary: string
 	title: string
 }
@@ -20,7 +20,9 @@ const { href, logo, logoAlt, metadata, summary, title } = Astro.props
 	<span class="mod-card__content">
 		<span class="mod-card__title">{title}</span>
 		<span class="mod-card__summary">{summary}</span>
-		<span class="mod-card__metadata">{metadata}</span>
+		<span class="mod-card__metadata">
+			{metadata.map(line => <span>{line}</span>)}
+		</span>
 	</span>
 	<Icon aria-hidden="true" class="mod-card__arrow" name="mdi:arrow-right" />
 </a>

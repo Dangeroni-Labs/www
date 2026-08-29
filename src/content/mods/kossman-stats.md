@@ -2,11 +2,12 @@
 title: Kossman Stats
 slug: kossman-stats
 summary: A modern continuation and rework of GokiStats with persistent stat progression, combat, movement, survival, and configurable gameplay systems.
-version: 0.1.0
-status: Stable
-minecraftVersion: '26.2'
-loaders:
-  - Fabric
+versions:
+  - minecraft: '26.2'
+    version: 0.1.0
+    status: Stable
+    loaders:
+      - Fabric
 logo: kossman-stats
 featured: true
 repository: https://github.com/Dangeroni-Labs/kossmanstats
