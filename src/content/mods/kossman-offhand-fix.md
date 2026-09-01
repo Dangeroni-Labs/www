@@ -14,6 +14,8 @@ versions:
     version: 0.1.1
     status: Stable
     loaders:
+      - Fabric
+      - NeoForge
       - Forge
 logo: kossman-offhand-fix
 featured: true
