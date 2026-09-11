@@ -20,7 +20,7 @@ const mods = defineCollection({
 				}),
 			)
 			.min(1),
-		logo: z.enum(['kossman-stats', 'renewable-lava', 'kossman-offhand-fix']),
+		logo: z.enum(['kossman-stats', 'renewable-lava', 'kossman-offhand-fix', 'easymud']),
 		featured: z.boolean(),
 		repository: z.string().url(),
 		curseforge: z.string().url().optional(),
