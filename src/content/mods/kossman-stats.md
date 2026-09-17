@@ -12,6 +12,7 @@ logo: kossman-stats
 featured: true
 repository: https://github.com/Dangeroni-Labs/kossmanstats
 curseforge: https://www.curseforge.com/minecraft/mc-mods/kossman-stats
+modrinth: https://modrinth.com/mod/kossman-stats
 issues: https://github.com/Dangeroni-Labs/kossmanstats/issues
 ---
 

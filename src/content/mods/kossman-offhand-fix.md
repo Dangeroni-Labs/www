@@ -4,7 +4,7 @@ slug: kossman-offhand-fix
 summary: Improves offhand stack handling by refilling compatible stacks before swapping.
 versions:
   - minecraft: '26.2'
-    version: 0.1.1
+    version: 0.2.0
     status: Stable
     loaders:
       - Fabric
@@ -40,6 +40,18 @@ Shift-click a compatible stack in your inventory or a supported container to ref
 ## Smarter swap key
 
 Pressing the swap-hands key (`F` by default) refills a compatible offhand stack before performing a normal swap. This works both during gameplay and while hovering an inventory slot.
+
+## [NEW] Configuration
+
+Use Mods -> Kossman's Offhand Fix -> Config (Fabric requires optional Mod Menu). Selections and Reset save/apply immediately; Done and Escape return to the previous screen. Manual edits to `config/offhand_fix.properties` require a restart.
+
+`shiftClickScope` accepts:
+
+- `PLAYER_INVENTORY_ONLY` - Player Inventory Only (default): refill only in the standalone inventory; crafting results remain vanilla.
+- `ALL_CONTAINERS` - All Containers: also refill incoming container stacks and crafting results; player-to-container transfers remain vanilla.
+- `DISABLED` - Disabled: all Shift-click transfers remain vanilla.
+
+This setting does not affect `F`.
 
 ## Vanilla fallback
 
