@@ -9,11 +9,16 @@ interface Props {
 const { active } = Astro.props
 ---
 
-<nav class="mod-wiki-nav" aria-label={RELICFORGED_WIKI_CONTENT.navLabel}>
+<nav class="mb-10 flex w-fit max-w-full flex-wrap gap-1 rounded-[var(--radius-md)] border border-[var(--color-border)] bg-[var(--color-background-elevated)]/80 p-1.5 backdrop-blur-md" aria-label={RELICFORGED_WIKI_CONTENT.navLabel}>
 	{
 		RELICFORGED_WIKI_CONTENT.navigation.map(item => (
 			<a
-				class:list={['mod-wiki-nav__link', { 'mod-wiki-nav__link--active': active === item.section }]}
+				class:list={[
+					'rounded-[var(--radius-sm)] border px-3 py-2 font-heading text-sm no-underline transition-colors',
+					active === item.section
+						? 'border-[var(--color-border)] bg-[var(--color-background-hover)] text-[var(--color-foreground)]'
+						: 'border-transparent text-[var(--color-foreground-secondary)] hover:bg-[var(--color-background-hover)] hover:text-[var(--color-foreground)]',
+				]}
 				href={item.href}
 				aria-current={active === item.section ? 'page' : undefined}
 			>

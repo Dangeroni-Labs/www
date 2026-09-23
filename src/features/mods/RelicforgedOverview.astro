@@ -1,0 +1,29 @@
+---
+import WikiImage from '$/components/ui/WikiImage.astro'
+import { RELICFORGED_WIKI_CONTENT } from '$/const/content'
+
+const { overview } = RELICFORGED_WIKI_CONTENT
+---
+
+<article class="mod-page__body mt-0">
+	<div class="max-w-[var(--content-width)]">
+		<p>{overview.intro}</p>
+		<p>{overview.beta}</p>
+	</div>
+	<section class="mt-10" aria-labelledby="progression-title">
+		<h2 id="progression-title">{overview.progressionTitle}</h2>
+		<ol class="mt-5 flex flex-wrap items-center gap-2 p-0 sm:gap-3" aria-label={overview.progressionTitle}>
+			{overview.progression.map((tier, index) => (
+				<li class="m-0! flex items-center gap-2 p-0! before:hidden sm:gap-3">
+					{index > 0 && <span aria-hidden="true" class="text-[var(--color-foreground-muted)]">→</span>}
+					<span class="rounded-[var(--radius-sm)] border border-[var(--color-border)] bg-[var(--color-background-elevated)] px-3 py-2 font-heading text-sm text-[var(--color-foreground)]">{tier}</span>
+				</li>
+			))}
+		</ol>
+		<p>{overview.future}</p>
+	</section>
+	<div class="mt-10 grid gap-4 sm:grid-cols-2">
+		<WikiImage alt={RELICFORGED_WIKI_CONTENT.forgeImageAlt} fallbackText={RELICFORGED_WIKI_CONTENT.forgeImageFallback} />
+		<WikiImage alt={RELICFORGED_WIKI_CONTENT.resonantImageAlt} />
+	</div>
+</article>

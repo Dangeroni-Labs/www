@@ -1,0 +1,98 @@
+---
+import { Image } from 'astro:assets'
+import { Icon } from 'astro-icon/components'
+
+import Footer from '$/components/shared/Footer.astro'
+import Header from '$/components/shared/Header.astro'
+import ModWikiNav from '$/components/ui/ModWikiNav.astro'
+import { MODS_CONTENT } from '$/const/content'
+import BaseLayout from '$/layouts/BaseLayout.astro'
+import { getModLogo } from '$/lib/mod-assets'
+import { formatLoaders, formatVersionRelease } from '$/lib/mod-compatibility'
+import type { ModEntry } from '$/lib/mods'
+
+interface Props {
+	mod: ModEntry
+	active: string
+	title: string
+	description: string
+}
+
+const { mod, active, title, description } = Astro.props
+const { data } = mod
+const links = [
+	...(data.curseforge
+		? [
+				{
+					href: data.curseforge,
+					icon: 'simple-icons:curseforge',
+					label: MODS_CONTENT.curseforge,
+				},
+			]
+		: []),
+	{
+		href: data.repository,
+		icon: 'simple-icons:github',
+		label: MODS_CONTENT.repository,
+	},
+	...(data.modrinth
+		? [
+				{
+					href: data.modrinth,
+					icon: 'simple-icons:modrinth',
+					label: MODS_CONTENT.modrinth,
+				},
+			]
+		: []),
+	...(data.demo
+		? [{ href: data.demo, icon: 'mdi:open-in-new', label: MODS_CONTENT.demo }]
+		: []),
+	...(data.issues
+		? [
+				{
+					href: data.issues,
+					icon: 'mdi:bug-outline',
+					label: MODS_CONTENT.issues,
+				},
+			]
+		: []),
+]
+---
+
+<BaseLayout title={title} description={description}>
+	<Header />
+	<main class="page-main mod-page mod-wiki-page">
+		<div class="container mx-auto max-w-[var(--wiki-content-width)]">
+			<header class="mb-8 grid gap-6 md:grid-cols-[minmax(0,1fr)_auto] md:items-center md:gap-8">
+				<div class="flex min-w-0 flex-col items-start gap-4 sm:flex-row sm:items-center sm:gap-6">
+					<Image alt="" class="h-20 w-20 shrink-0 object-contain sm:h-28 sm:w-28" src={getModLogo(data.logo)} />
+					<div class="min-w-0">
+						<h1 class="text-[clamp(2.25rem,6vw,4.5rem)]">{data.title}</h1>
+						<p class="mod-page__summary mt-3">{data.summary}</p>
+					</div>
+				</div>
+				<div class="min-w-0 rounded-[var(--radius-md)] border border-[var(--color-border)] bg-[var(--color-background-elevated)]/80 p-4 backdrop-blur-md md:min-w-48">
+					<div class="grid gap-3 font-heading text-sm text-[var(--color-foreground-secondary)]">
+						{data.versions.map(version => (
+							<div class="grid gap-1">
+								<span class="font-semibold text-[var(--color-foreground)]">{formatVersionRelease(version)}</span>
+								<span>{MODS_CONTENT.minecraft} {version.minecraft}</span>
+								<span>{formatLoaders(version)}</span>
+							</div>
+						))}
+					</div>
+					<div class="mt-4 flex flex-wrap gap-x-4 gap-y-2 border-t border-[var(--color-border)] pt-3 text-[var(--color-foreground-secondary)] md:max-w-44">
+						{links.map(link => (
+							<a class="icon-link font-heading text-sm" href={link.href} rel="noreferrer" target="_blank">
+								<Icon aria-hidden="true" name={link.icon} />{link.label}
+							</a>
+						))}
+					</div>
+				</div>
+			</header>
+			<ModWikiNav active={active} />
+			<slot />
+		</div>
+	</main>
+	<Footer />
+</BaseLayout>

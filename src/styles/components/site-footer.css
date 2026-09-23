@@ -22,29 +22,6 @@
 	list-style: none;
 }
 
-.site-footer__links a {
-	display: inline-flex;
-	align-items: center;
-	gap: var(--space-2);
-	text-decoration: none;
-}
-
-.site-footer__links a:hover,
-.site-footer__links a:focus-visible {
-	color: var(--color-accent);
-}
-
-.site-footer__links a:hover svg,
-.site-footer__links a:focus-visible svg {
-	transform: translateX(var(--space-1));
-}
-
-.site-footer__links svg {
-	width: var(--size-icon-sm);
-	height: var(--size-icon-sm);
-	transition: transform var(--duration-fast) var(--ease-standard);
-}
-
 .site-footer p {
 	margin: 0;
 }

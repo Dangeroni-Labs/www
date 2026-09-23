@@ -1,35 +1,9 @@
-.mod-wiki-nav {
-	display: flex;
-	flex-wrap: wrap;
-	gap: var(--space-6);
-	margin-bottom: var(--space-8);
-	border-bottom: 1px solid var(--color-border);
-}
-
-.mod-wiki-nav__link {
-	padding-bottom: var(--space-3);
-	border-bottom: 2px solid transparent;
-	color: var(--color-foreground-secondary);
-	font-family: var(--font-heading);
-	font-size: var(--font-size-nav);
-	text-decoration: none;
-}
-
-.mod-wiki-nav__link:hover,
-.mod-wiki-nav__link:focus-visible,
-.mod-wiki-nav__link--active {
-	color: var(--color-foreground);
-	border-color: var(--color-project-accent);
-}
-
 .mod-wiki-page .mod-page__body {
 	margin-top: 0;
 }
 
-.mod-wiki-images {
-	display: grid;
-	gap: var(--space-4);
-	margin-top: var(--space-8);
+.mod-wiki-page .mod-page__body h2 {
+	margin-top: 0;
 }
 
 .wiki-image {
@@ -185,32 +159,4 @@
 
 .wiki-recipe__ingredients {
 	font-size: var(--font-size-small);
-}
-
-.wiki-stats {
-	display: grid;
-	gap: var(--space-2);
-	margin-top: var(--space-6);
-}
-
-.wiki-stats > div {
-	display: flex;
-	gap: var(--space-4);
-}
-
-.wiki-stats dd {
-	margin: 0;
-}
-
-.wiki-stats {
-	padding-block: var(--space-4);
-	border-block: 1px solid var(--color-border);
-}
-
-.wiki-stats > div {
-	justify-content: space-between;
-}
-
-.wiki-stats dt {
-	color: var(--color-foreground);
 }

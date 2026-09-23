@@ -9,7 +9,8 @@
 	place-items: center;
 	border: 1px solid var(--color-border);
 	border-radius: var(--radius-sm);
-	background: var(--color-background-elevated);
+	background: color-mix(in srgb, var(--color-background-elevated) 80%, transparent);
+	backdrop-filter: blur(var(--space-2));
 	color: var(--color-foreground-secondary);
 	cursor: pointer;
 	transition: background var(--duration-fast) var(--ease-standard), color var(--duration-fast) var(--ease-standard), border-color var(--duration-fast) var(--ease-standard);

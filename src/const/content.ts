@@ -37,6 +37,7 @@ export const MODS_CONTENT = {
 	description: 'Minecraft mods, ports, continuations, and small experiments.',
 	details: 'Project details',
 	versions: 'Versions',
+	minecraft: 'Minecraft',
 	repository: 'GitHub',
 	curseforge: 'CurseForge',
 	modrinth: 'Modrinth',
@@ -56,6 +57,32 @@ export const RELICFORGED_WIKI_CONTENT = {
 	resonantImageAlt: 'Resonant tool set in Minecraft',
 	blackenedImageAlt: 'Blackened tool set in Minecraft',
 	forgeImageFallback: "Dangeroni hasn't uploaded this one yet.",
+	overview: {
+		intro:
+			'Relicforged adds new tool progression built around vanilla materials, custom forging and unique tool abilities.',
+		beta: 'The current beta includes Resonant tools, Blackened tools, the Relic Forge and Searing.',
+		progressionTitle: 'Current progression',
+		progression: ['Iron', 'Resonant', 'Diamond', 'Blackened'],
+		future: 'More progression is planned for later releases.',
+	},
+	gear: {
+		resonant: {
+			title: 'Resonant',
+			paragraphs: [
+				'Resonant is a mid-game tier between Iron and Diamond. It lasts longer and mines faster than Iron, but it does not replace Diamond progression.',
+				'Non-sword Resonant tools deal Iron-equivalent damage. The Resonant Sword deals one more damage than an Iron Sword.',
+			],
+			statsTitle: 'Resonant stats',
+		},
+		blackened: {
+			title: 'Blackened',
+			paragraphs: [
+				'Blackened tools are forged in the Relic Forge and are fireproof. Shift + Right Click with one to toggle Searing.',
+				'With Searing on, the Pickaxe, Axe and Shovel can smelt compatible drops. The Sword can ignite targets. The Hoe has no special Searing effect yet.',
+				'Blackened balancing is still being worked on during beta, so exact stats are left out for now.',
+			],
+		},
+	},
 	recipes: {
 		general: {
 			title: 'General',

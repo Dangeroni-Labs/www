@@ -1,18 +1,11 @@
 ---
-import { Image } from 'astro:assets'
 import type { CollectionEntry } from 'astro:content'
 import { getCollection, getEntry, render } from 'astro:content'
-import Footer from '$/components/shared/Footer.astro'
-import Header from '$/components/shared/Header.astro'
-import Container from '$/components/ui/Container.astro'
-import ModWikiNav from '$/components/ui/ModWikiNav.astro'
 import RecipeCard from '$/components/ui/RecipeCard.astro'
 import RecipeDetails from '$/components/ui/RecipeDetails.astro'
 import WikiImage from '$/components/ui/WikiImage.astro'
 import { RELICFORGED_WIKI_CONTENT } from '$/const/content'
-import BaseLayout from '$/layouts/BaseLayout.astro'
-import { getModLogo } from '$/lib/mod-assets'
-import { formatCompatibilityLine } from '$/lib/mod-compatibility'
+import LargeModLayout from '$/features/mods/LargeModLayout.astro'
 import { relicforgedRecipes, resonantStats } from '$/lib/relicforged'
 
 export async function getStaticPaths() {
@@ -43,24 +36,12 @@ const resonantRecipes = relicforgedRecipes.filter(recipe =>
 	recipe.title.startsWith('Resonant '),
 )
 const recipeContent = RELICFORGED_WIKI_CONTENT.recipes
+const gearContent = RELICFORGED_WIKI_CONTENT.gear
 ---
 
-<BaseLayout title={`${title} · Relicforged`} description={summary}>
-	<Header />
-	<main class="page-main mod-page mod-wiki-page">
-		<Container class="mod-page__hero">
-			<Image alt="Relicforged" class="mod-page__logo" src={getModLogo('relicforged')} />
-			<div>
-				<p class="section-eyebrow">{formatCompatibilityLine(mod.data.versions[0])}</p>
-				<h1>Relicforged</h1>
-				<p class="mod-page__summary">{summary}</p>
-			</div>
-		</Container>
-		<Container class="mod-page__content">
-			<ModWikiNav active={section} />
+<LargeModLayout mod={mod} active={section} title={`${title} · Relicforged`} description={summary}>
 			<article class="mod-page__body">
-				<h2>{title}</h2>
-				<Content />
+				{section === 'recipes' && <><h2>{title}</h2><p>{summary}</p><Content /></>}
 				{
 					section === 'recipes' && (
 						<div class="wiki-recipes">
@@ -96,20 +77,28 @@ const recipeContent = RELICFORGED_WIKI_CONTENT.recipes
 				}
 				{
 					section === 'gear' && (
-						<>
-							<h2>Resonant stats</h2>
-							<dl class="wiki-stats">
-								{resonantStats.map(stat => <div><dt>{stat.label}</dt><dd>{stat.value}</dd></div>)}
-							</dl>
-							<div class="mod-wiki-images">
+						<div class="grid gap-12">
+							<div><h2>{title}</h2><p>{summary}</p></div>
+							<section class="grid items-start gap-6 md:grid-cols-2 md:gap-10" aria-labelledby="resonant-title">
+								<div class="min-w-0">
+									<h2 id="resonant-title">{gearContent.resonant.title}</h2>
+									{gearContent.resonant.paragraphs.map(paragraph => <p>{paragraph}</p>)}
+									<h3 class="mt-6 font-heading text-xl text-[var(--color-foreground)]">{gearContent.resonant.statsTitle}</h3>
+									<dl class="mt-6 grid gap-2 border-y border-[var(--color-border)] py-4">
+										{resonantStats.map(stat => <div class="flex justify-between gap-4"><dt class="text-[var(--color-foreground)]">{stat.label}</dt><dd class="m-0">{stat.value}</dd></div>)}
+									</dl>
+								</div>
 								<WikiImage alt={RELICFORGED_WIKI_CONTENT.resonantImageAlt} />
+							</section>
+							<section class="grid items-start gap-6 md:grid-cols-2 md:gap-10" aria-labelledby="blackened-title">
+								<div class="min-w-0 md:order-2">
+									<h2 id="blackened-title">{gearContent.blackened.title}</h2>
+									{gearContent.blackened.paragraphs.map(paragraph => <p>{paragraph}</p>)}
+								</div>
 								<WikiImage alt={RELICFORGED_WIKI_CONTENT.blackenedImageAlt} />
-							</div>
-						</>
+							</section>
+						</div>
 					)
 				}
 			</article>
-		</Container>
-	</main>
-	<Footer />
-</BaseLayout>
+</LargeModLayout>
