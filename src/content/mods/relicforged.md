@@ -11,6 +11,7 @@ versions:
 logo: relicforged
 featured: false
 repository: https://github.com/Dangeroni-Labs/relicforged
+curseforge: https://www.curseforge.com/minecraft/mc-mods/relicforged
 issues: https://github.com/Dangeroni-Labs/relicforged/issues
 ---
 
