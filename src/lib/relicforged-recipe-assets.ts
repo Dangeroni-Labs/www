@@ -1,14 +1,17 @@
 import ancientDebris from '$/assets/default_minecraft/blocks/ancient_debris_side.png?url'
+import crimsonStemTop from '$/assets/default_minecraft/blocks/crimson_stem_top.png?url'
 import magmaBlock from '$/assets/default_minecraft/blocks/magma_block.gif?url'
 import obsidian from '$/assets/default_minecraft/blocks/obsidian.png?url'
 import quartzBlock from '$/assets/default_minecraft/blocks/quartz_block_top.png?url'
 import smithingTable from '$/assets/default_minecraft/blocks/smithing_table_front.png?url'
+import witherSkeletonSkull from '$/assets/default_minecraft/blocks/wither_skeleton_skull.png?url'
 import amethystShard from '$/assets/default_minecraft/materials/amethyst_shard.png?url'
 import copperIngot from '$/assets/default_minecraft/materials/copper_ingot.png?url'
 import enderPearl from '$/assets/default_minecraft/materials/ender_pearl.png?url'
 import ghastTear from '$/assets/default_minecraft/materials/ghast_tear.png?url'
 import ironIngot from '$/assets/default_minecraft/materials/iron_ingot.png?url'
 import magmaCream from '$/assets/default_minecraft/materials/magma_cream.png?url'
+import netherWart from '$/assets/default_minecraft/materials/nether_wart.png?url'
 import stick from '$/assets/default_minecraft/materials/stick.png?url'
 import relicForge from '$/assets/mod_assets/relicforged/item_sprites/blocks/relic_forge/relic_forge_side.png?url'
 import resonantAlloy from '$/assets/mod_assets/relicforged/item_sprites/materials/resonant/resonant_alloy.png?url'
@@ -32,9 +35,12 @@ const recipeSprites: Record<string, string> = {
 	'Ghast Tear': ghastTear,
 	'Iron Ingot': ironIngot,
 	'Magma Cream': magmaCream,
+	'Nether Wart': netherWart,
 	Stick: stick,
+	'Wither Skeleton Skull': witherSkeletonSkull,
 	'Ancient Debris': ancientDebris,
 	'Magma Block': magmaBlock,
+	'Nether wood': crimsonStemTop,
 	Obsidian: obsidian,
 	'Quartz Block': quartzBlock,
 	'Smithing Table': smithingTable,
