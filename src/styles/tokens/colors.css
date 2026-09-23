@@ -25,6 +25,9 @@
 	--color-focus: var(--palette-focus);
 	--color-project-accent: var(--color-accent);
 	--color-project-accent-soft: var(--color-accent-soft);
+	--color-recipe-slot-background: var(--palette-light-border-strong);
+	--color-recipe-slot-border: var(--palette-light-secondary);
+	--color-recipe-slot-foreground: var(--palette-light-foreground);
 }
 
 :root,

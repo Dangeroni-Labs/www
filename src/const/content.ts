@@ -53,11 +53,9 @@ export const RELICFORGED_WIKI_CONTENT = {
 	],
 	imageFallback: "Image was not found on Dangeroni's PC.",
 	forgeImageAlt: 'Relic Forge in Minecraft',
-	forgeRecipeImageAlt: 'Relic Forge recipe screenshot',
 	resonantImageAlt: 'Resonant tool set in Minecraft',
 	blackenedImageAlt: 'Blackened tool set in Minecraft',
 	forgeImageFallback: "Dangeroni hasn't uploaded this one yet.",
-	recipeImageFallback: 'Recipe screenshot pending.',
 } as const
 
 export const ABOUT_CONTENT = {

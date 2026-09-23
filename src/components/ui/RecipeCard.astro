@@ -1,5 +1,7 @@
 ---
+import RecipeSlot from '$/components/ui/RecipeSlot.astro'
 import type { Recipe } from '$/lib/relicforged'
+import { getRecipeSprite } from '$/lib/relicforged-recipe-assets'
 import '$/styles/components/mod-wiki.css'
 
 interface Props {
@@ -12,26 +14,35 @@ const { recipe } = Astro.props
 <section class="wiki-recipe" aria-label={recipe.title}>
 	<h2>{recipe.title}</h2>
 	<p>{recipe.description}</p>
-	{
-		recipe.pattern ? (
-			<>
+	<div class="wiki-recipe__visual">
+		{
+			recipe.pattern ? (
 				<div class="wiki-recipe__grid" aria-label={`${recipe.title} crafting grid`}>
 					{recipe.pattern.flatMap(row =>
-						[...row].map(symbol => (
-							<span class="wiki-recipe__cell" aria-label={recipe.key?.[symbol] ?? 'Empty slot'}>
-								{symbol.trim() || ' '}
-								</span>
-							)),
+						[...row].map(symbol => {
+							const ingredient = recipe.key?.[symbol]
+							return <RecipeSlot src={ingredient ? getRecipeSprite(ingredient) : undefined} alt={ingredient ?? ''} empty={!ingredient} />
+						}),
 						)}
 				</div>
-				<dl class="wiki-recipe__key">
-					{Object.entries(recipe.key ?? {}).map(([symbol, ingredient]) => (
-						<div><dt>{symbol}</dt><dd>{ingredient}</dd></div>
+			) : (
+				<div class="wiki-recipe__shapeless" aria-label={`${recipe.title} shapeless ingredients`}>
+					{recipe.ingredients.map((ingredient, index) => (
+						<>
+							{index > 0 && <span aria-hidden="true">+</span>}
+							<RecipeSlot src={getRecipeSprite(ingredient)} alt={ingredient} />
+						</>
 					))}
-				</dl>
-			</>
-		) : (
-			<p class="wiki-recipe__ingredients">{recipe.ingredients.join(' + ')} → {recipe.title}</p>
-		)
-	}
+				</div>
+			)
+		}
+		<span class="wiki-recipe__arrow" aria-hidden="true">→</span>
+		<div class="wiki-recipe__result">
+			<RecipeSlot src={getRecipeSprite(recipe.title)} alt={recipe.title} />
+		</div>
+	</div>
+	<p class="wiki-recipe__ingredients">
+		{recipe.pattern ? Object.values(recipe.key ?? {}).join(' · ') : recipe.ingredients.join(' · ')}
+		→ {recipe.title}
+	</p>
 </section>

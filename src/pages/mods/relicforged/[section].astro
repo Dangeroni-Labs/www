@@ -54,14 +54,9 @@ if (!mod) throw new Error('Relicforged mod entry is missing')
 				<Content />
 				{
 					section === 'recipes' && (
-						<>
-							<div class="mod-wiki-images">
-								<WikiImage alt={RELICFORGED_WIKI_CONTENT.forgeRecipeImageAlt} fallbackText={RELICFORGED_WIKI_CONTENT.recipeImageFallback} />
-							</div>
-							<div class="wiki-recipes">
-								{relicforgedRecipes.map(recipe => <RecipeCard recipe={recipe} />)}
-							</div>
-						</>
+						<div class="wiki-recipes">
+							{relicforgedRecipes.map(recipe => <RecipeCard recipe={recipe} />)}
+						</div>
 					)
 				}
 				{
