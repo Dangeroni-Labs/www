@@ -1,5 +1,6 @@
 ---
 import { ClientRouter } from 'astro:transitions'
+import Analytics from '@vercel/analytics/astro'
 
 import { SITE, THEME_STORAGE_KEY } from '$/const/site'
 import '$/styles/global.css'
@@ -22,6 +23,7 @@ const pageTitle =
 		<meta name="description" content={description} />
 		<meta name="theme-color" content={SITE.themeColor} />
 		<title>{pageTitle}</title>
+		<Analytics />
 		<ClientRouter />
 		<script is:inline>
 			(() => {
