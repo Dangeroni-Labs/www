@@ -7,6 +7,7 @@ import Header from '$/components/shared/Header.astro'
 import Container from '$/components/ui/Container.astro'
 import ModWikiNav from '$/components/ui/ModWikiNav.astro'
 import RecipeCard from '$/components/ui/RecipeCard.astro'
+import RecipeDetails from '$/components/ui/RecipeDetails.astro'
 import WikiImage from '$/components/ui/WikiImage.astro'
 import { RELICFORGED_WIKI_CONTENT } from '$/const/content'
 import BaseLayout from '$/layouts/BaseLayout.astro'
@@ -34,6 +35,14 @@ const { Content } = await render(entry)
 const { section, title, summary } = entry.data
 const mod = await getEntry('mods', 'relicforged')
 if (!mod) throw new Error('Relicforged mod entry is missing')
+const generalRecipes = relicforgedRecipes.filter(
+	recipe =>
+		recipe.title === 'Relic Forge' || recipe.title === 'Relic Forging Template',
+)
+const resonantRecipes = relicforgedRecipes.filter(recipe =>
+	recipe.title.startsWith('Resonant '),
+)
+const recipeContent = RELICFORGED_WIKI_CONTENT.recipes
 ---
 
 <BaseLayout title={`${title} · Relicforged`} description={summary}>
@@ -55,7 +64,33 @@ if (!mod) throw new Error('Relicforged mod entry is missing')
 				{
 					section === 'recipes' && (
 						<div class="wiki-recipes">
-							{relicforgedRecipes.map(recipe => <RecipeCard recipe={recipe} />)}
+							<section class="wiki-recipe-section" aria-labelledby="general-recipes-title">
+								<h3 id="general-recipes-title">{recipeContent.general.title}</h3>
+								<p>{recipeContent.general.intro}</p>
+								<div class="wiki-recipe-section__list">
+									{generalRecipes.map(recipe => <RecipeDetails title={recipe.title}><RecipeCard recipe={recipe} /></RecipeDetails>)}
+								</div>
+							</section>
+							<section class="wiki-recipe-section" aria-labelledby="resonant-recipes-title">
+								<h3 id="resonant-recipes-title">{recipeContent.resonant.title}</h3>
+								<p>{recipeContent.resonant.intro}</p>
+								<div class="wiki-recipe-section__list">
+									{resonantRecipes.map(recipe => <RecipeDetails title={recipe.title}><RecipeCard recipe={recipe} /></RecipeDetails>)}
+								</div>
+							</section>
+							<section class="wiki-recipe-section" aria-labelledby="blackened-recipes-title">
+								<h3 id="blackened-recipes-title">{recipeContent.blackened.title}</h3>
+								<p>{recipeContent.blackened.intro}</p>
+								<div class="wiki-recipe-section__list">
+									{recipeContent.blackened.tools.map(tool => (
+										<RecipeDetails title={tool}>
+											<div class="wiki-recipe-notice">
+												{recipeContent.blackened.notice.map(line => <p>{line}</p>)}
+												</div>
+										</RecipeDetails>
+									))}
+								</div>
+							</section>
 						</div>
 					)
 				}

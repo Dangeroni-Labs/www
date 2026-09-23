@@ -56,6 +56,33 @@ export const RELICFORGED_WIKI_CONTENT = {
 	resonantImageAlt: 'Resonant tool set in Minecraft',
 	blackenedImageAlt: 'Blackened tool set in Minecraft',
 	forgeImageFallback: "Dangeroni hasn't uploaded this one yet.",
+	recipes: {
+		general: {
+			title: 'General',
+			intro: 'Recipes used to start and progress through Relicforged.',
+		},
+		resonant: {
+			title: 'Resonant Tools',
+			intro:
+				'Resonant tools use familiar vanilla recipes with Resonant Alloy as the main material.',
+		},
+		blackened: {
+			title: 'Blackened Tools',
+			intro:
+				'Blackened tools are assembled in the Relic Forge using a Diamond tool, Blackened components and a Relic Forging Template.',
+			tools: [
+				'Blackened Pickaxe',
+				'Blackened Axe',
+				'Blackened Shovel',
+				'Blackened Hoe',
+				'Blackened Sword',
+			],
+			notice: [
+				'Forged in the Relic Forge.',
+				'Recipe images are still being worked on.',
+			],
+		},
+	},
 } as const
 
 export const ABOUT_CONTENT = {

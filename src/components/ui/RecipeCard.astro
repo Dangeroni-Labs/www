@@ -11,8 +11,7 @@ interface Props {
 const { recipe } = Astro.props
 ---
 
-<section class="wiki-recipe" aria-label={recipe.title}>
-	<h2>{recipe.title}</h2>
+<div class="wiki-recipe">
 	<p>{recipe.description}</p>
 	<div class="wiki-recipe__visual">
 		{
@@ -45,4 +44,4 @@ const { recipe } = Astro.props
 		{recipe.pattern ? Object.values(recipe.key ?? {}).join(' · ') : recipe.ingredients.join(' · ')}
 		→ {recipe.title}
 	</p>
-</section>
+</div>

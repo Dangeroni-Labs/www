@@ -60,16 +60,82 @@
 .wiki-recipes {
 	display: grid;
 	gap: var(--space-12);
-	margin-top: var(--space-12);
+	margin-top: var(--space-8);
 }
 
-.wiki-recipe {
-	padding-top: var(--space-6);
+.wiki-recipe-section h3 {
+	margin: 0;
+	color: var(--color-foreground);
+	font-family: var(--font-heading);
+	font-size: var(--font-size-h3);
+	font-weight: var(--font-weight-semibold);
+}
+
+.wiki-recipe-section > p {
+	margin-block: var(--space-3) var(--space-6);
+}
+
+.wiki-recipe-section__list {
 	border-top: 1px solid var(--color-border);
 }
 
-.wiki-recipe h2 {
+.wiki-recipe-details {
+	border-bottom: 1px solid var(--color-border);
+}
+
+.wiki-recipe-details[open] {
+	background: var(--color-background-elevated);
+}
+
+.wiki-recipe-details summary {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: var(--space-4);
+	padding: var(--space-4);
+	color: var(--color-foreground);
+	cursor: pointer;
+	font-family: var(--font-heading);
+	list-style: none;
+}
+
+.wiki-recipe-details summary::-webkit-details-marker {
+	display: none;
+}
+
+.wiki-recipe-details summary::after {
+	color: var(--color-project-accent);
+	content: '+';
+}
+
+.wiki-recipe-details[open] summary::after {
+	content: '−';
+}
+
+.wiki-recipe-details summary:hover,
+.wiki-recipe-details summary:focus-visible {
+	background: var(--color-background-hover);
+}
+
+.wiki-recipe-details__body {
+	padding: 0 var(--space-4) var(--space-6);
+}
+
+.wiki-recipe > p:first-child {
 	margin-top: 0;
+}
+
+.wiki-recipe-notice {
+	padding-left: var(--space-4);
+	border-left: 2px solid var(--color-project-accent);
+}
+
+.wiki-recipe-notice p {
+	margin-block: 0;
+}
+
+.wiki-recipe-notice p + p {
+	margin-top: var(--space-2);
 }
 
 .wiki-recipe__visual,
