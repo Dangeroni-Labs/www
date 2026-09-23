@@ -9,7 +9,7 @@ versions:
     loaders:
       - Fabric
 logo: kossman-stats
-featured: true
+featured: false
 repository: https://github.com/Dangeroni-Labs/kossmanstats
 curseforge: https://www.curseforge.com/minecraft/mc-mods/kossman-stats
 modrinth: https://modrinth.com/mod/kossman-stats
