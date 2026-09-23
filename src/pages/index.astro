@@ -1,4 +1,7 @@
 ---
+import { Image } from 'astro:assets'
+
+import heroImage from '$/assets/hero.jpg'
 import Footer from '$/components/shared/Footer.astro'
 import Header from '$/components/shared/Header.astro'
 import Container from '$/components/ui/Container.astro'
@@ -15,11 +18,22 @@ const featuredMods = await getFeaturedMods()
 <BaseLayout title={SITE.name}>
 	<Header />
 	<main>
-		<Container as="section" class="home-hero" data-motion="fade-in">
-			<p class="home-intro__eyebrow">{HOME_CONTENT.eyebrow}</p>
-			<h1>{HOME_CONTENT.title}</h1>
-			<p class="home-intro__description">{HOME_CONTENT.description}</p>
-		</Container>
+		<section class="home-hero relative isolate grid min-h-[var(--hero-min-height)] content-center overflow-hidden py-[var(--section-space)]">
+			<Image
+				alt=""
+				aria-hidden="true"
+				class="home-hero__image pointer-events-none absolute inset-0 h-full! w-full scale-[1.03] object-cover object-[center_45%] opacity-[0.26] blur-[2px] saturate-[0.8] contrast-[0.9]"
+				decoding="async"
+				format="webp"
+				loading="eager"
+				src={heroImage}
+			/>
+			<div aria-hidden="true" class="home-hero__veil pointer-events-none absolute inset-0 z-10"></div>
+			<Container class="relative z-20 max-w-[var(--content-width)]" data-motion="fade-in">
+				<h1>{HOME_CONTENT.title}</h1>
+				<p class="home-intro__description">{HOME_CONTENT.description}</p>
+			</Container>
+		</section>
 		<FeaturedMods mods={featuredMods} />
 		<AboutTeaser />
 	</main>

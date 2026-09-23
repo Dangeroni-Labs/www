@@ -1,5 +1,4 @@
 export const HOME_CONTENT = {
-	eyebrow: 'Dangeroni Labs',
 	title: 'Dangeroni Labs',
 	description:
 		'Minecraft mods, ports, continuations, and small things I wanted to exist.',

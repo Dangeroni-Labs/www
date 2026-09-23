@@ -1,9 +1,12 @@
-.home-hero {
-	display: grid;
-	align-content: center;
-	min-height: var(--hero-min-height);
-	max-width: var(--content-width);
-	padding-block: var(--section-space);
+.home-hero__veil {
+	background:
+		linear-gradient(to bottom, var(--color-background), transparent 24% 58%, var(--color-background)),
+		radial-gradient(ellipse 78% 78% at 52% 45%, transparent 10%, var(--color-background)),
+		color-mix(in srgb, var(--color-background) 18%, transparent);
+}
+
+[data-theme='light'] .home-hero__image {
+	opacity: 0.12;
 }
 
 .home-intro__eyebrow {
