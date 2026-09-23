@@ -1,0 +1,24 @@
+---
+import { RELICFORGED_WIKI_CONTENT } from '$/const/content'
+import '$/styles/components/mod-wiki.css'
+
+interface Props {
+	src?: string
+	alt: string
+	fallbackText?: string
+}
+
+const {
+	src,
+	alt,
+	fallbackText = RELICFORGED_WIKI_CONTENT.imageFallback,
+} = Astro.props
+---
+
+<div
+	class:list={['wiki-image', { 'wiki-image--placeholder': !src }]}
+	role={!src ? 'img' : undefined}
+	aria-label={!src ? alt : undefined}
+>
+	{src ? <img src={src} alt={alt} loading="lazy" /> : <span>{fallbackText}</span>}
+</div>

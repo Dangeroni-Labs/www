@@ -1,0 +1,24 @@
+---
+import { RELICFORGED_WIKI_CONTENT } from '$/const/content'
+import '$/styles/components/mod-wiki.css'
+
+interface Props {
+	active: string
+}
+
+const { active } = Astro.props
+---
+
+<nav class="mod-wiki-nav" aria-label={RELICFORGED_WIKI_CONTENT.navLabel}>
+	{
+		RELICFORGED_WIKI_CONTENT.navigation.map(item => (
+			<a
+				class:list={['mod-wiki-nav__link', { 'mod-wiki-nav__link--active': active === item.section }]}
+				href={item.href}
+				aria-current={active === item.section ? 'page' : undefined}
+			>
+				{item.label}
+			</a>
+		))
+	}
+</nav>

@@ -44,6 +44,22 @@ export const MODS_CONTENT = {
 	demo: 'Watch demo',
 } as const
 
+export const RELICFORGED_WIKI_CONTENT = {
+	navLabel: 'Relicforged sections',
+	navigation: [
+		{ label: 'Overview', href: '/mods/relicforged', section: 'overview' },
+		{ label: 'Recipes', href: '/mods/relicforged/recipes', section: 'recipes' },
+		{ label: 'Gear', href: '/mods/relicforged/gear', section: 'gear' },
+	],
+	imageFallback: "Image was not found on Dangeroni's PC.",
+	forgeImageAlt: 'Relic Forge in Minecraft',
+	forgeRecipeImageAlt: 'Relic Forge recipe screenshot',
+	resonantImageAlt: 'Resonant tool set in Minecraft',
+	blackenedImageAlt: 'Blackened tool set in Minecraft',
+	forgeImageFallback: "Dangeroni hasn't uploaded this one yet.",
+	recipeImageFallback: 'Recipe screenshot pending.',
+} as const
+
 export const ABOUT_CONTENT = {
 	eyebrow: 'About',
 	title: 'Dangeroni Labs.',

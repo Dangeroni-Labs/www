@@ -88,7 +88,7 @@ if (!themeWindow.__dangeroniThemeListeners) {
 		)
 
 		if (preferenceButton) {
-			const preference = preferenceButton.dataset.themePreference
+			const preference = preferenceButton.dataset.themePreference ?? null
 
 			if (isThemePreference(preference)) {
 				savePreference(preference)

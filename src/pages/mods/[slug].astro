@@ -6,7 +6,9 @@ import { Icon } from 'astro-icon/components'
 import Footer from '$/components/shared/Footer.astro'
 import Header from '$/components/shared/Header.astro'
 import Container from '$/components/ui/Container.astro'
-import { MODS_CONTENT } from '$/const/content'
+import ModWikiNav from '$/components/ui/ModWikiNav.astro'
+import WikiImage from '$/components/ui/WikiImage.astro'
+import { MODS_CONTENT, RELICFORGED_WIKI_CONTENT } from '$/const/content'
 import BaseLayout from '$/layouts/BaseLayout.astro'
 import { getModLogo } from '$/lib/mod-assets'
 import {
@@ -75,6 +77,7 @@ const links = [
 			</div>
 		</Container>
 		<Container class="mod-page__content">
+			{data.slug === 'relicforged' && <ModWikiNav active="overview" />}
 			<section class="mod-versions" aria-labelledby="mod-versions-title">
 				<h2 id="mod-versions-title">{MODS_CONTENT.versions}</h2>
 				<div class="mod-versions__list">
@@ -111,6 +114,14 @@ const links = [
 			</div>
 			<article class="mod-page__body">
 				<Content />
+				{
+					data.slug === 'relicforged' && (
+						<div class="mod-wiki-images">
+							<WikiImage alt={RELICFORGED_WIKI_CONTENT.forgeImageAlt} fallbackText={RELICFORGED_WIKI_CONTENT.forgeImageFallback} />
+							<WikiImage alt={RELICFORGED_WIKI_CONTENT.resonantImageAlt} />
+						</div>
+					)
+				}
 			</article>
 		</Container>
 	</main>

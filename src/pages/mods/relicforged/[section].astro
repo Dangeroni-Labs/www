@@ -1,0 +1,85 @@
+---
+import { Image } from 'astro:assets'
+import type { CollectionEntry } from 'astro:content'
+import { getCollection, getEntry, render } from 'astro:content'
+import Footer from '$/components/shared/Footer.astro'
+import Header from '$/components/shared/Header.astro'
+import Container from '$/components/ui/Container.astro'
+import ModWikiNav from '$/components/ui/ModWikiNav.astro'
+import RecipeCard from '$/components/ui/RecipeCard.astro'
+import WikiImage from '$/components/ui/WikiImage.astro'
+import { RELICFORGED_WIKI_CONTENT } from '$/const/content'
+import BaseLayout from '$/layouts/BaseLayout.astro'
+import { getModLogo } from '$/lib/mod-assets'
+import { formatCompatibilityLine } from '$/lib/mod-compatibility'
+import { relicforgedRecipes, resonantStats } from '$/lib/relicforged'
+
+export async function getStaticPaths() {
+	const docs = await getCollection(
+		'modDocs',
+		entry => entry.data.mod === 'relicforged',
+	)
+	return docs.map(entry => ({
+		params: { section: entry.data.section },
+		props: { entry },
+	}))
+}
+
+interface Props {
+	entry: CollectionEntry<'modDocs'>
+}
+
+const { entry } = Astro.props
+const { Content } = await render(entry)
+const { section, title, summary } = entry.data
+const mod = await getEntry('mods', 'relicforged')
+if (!mod) throw new Error('Relicforged mod entry is missing')
+---
+
+<BaseLayout title={`${title} · Relicforged`} description={summary}>
+	<Header />
+	<main class="page-main mod-page mod-wiki-page">
+		<Container class="mod-page__hero">
+			<Image alt="Relicforged" class="mod-page__logo" src={getModLogo('relicforged')} />
+			<div>
+				<p class="section-eyebrow">{formatCompatibilityLine(mod.data.versions[0])}</p>
+				<h1>Relicforged</h1>
+				<p class="mod-page__summary">{summary}</p>
+			</div>
+		</Container>
+		<Container class="mod-page__content">
+			<ModWikiNav active={section} />
+			<article class="mod-page__body">
+				<h2>{title}</h2>
+				<Content />
+				{
+					section === 'recipes' && (
+						<>
+							<div class="mod-wiki-images">
+								<WikiImage alt={RELICFORGED_WIKI_CONTENT.forgeRecipeImageAlt} fallbackText={RELICFORGED_WIKI_CONTENT.recipeImageFallback} />
+							</div>
+							<div class="wiki-recipes">
+								{relicforgedRecipes.map(recipe => <RecipeCard recipe={recipe} />)}
+							</div>
+						</>
+					)
+				}
+				{
+					section === 'gear' && (
+						<>
+							<h2>Resonant stats</h2>
+							<dl class="wiki-stats">
+								{resonantStats.map(stat => <div><dt>{stat.label}</dt><dd>{stat.value}</dd></div>)}
+							</dl>
+							<div class="mod-wiki-images">
+								<WikiImage alt={RELICFORGED_WIKI_CONTENT.resonantImageAlt} />
+								<WikiImage alt={RELICFORGED_WIKI_CONTENT.blackenedImageAlt} />
+							</div>
+						</>
+					)
+				}
+			</article>
+		</Container>
+	</main>
+	<Footer />
+</BaseLayout>
