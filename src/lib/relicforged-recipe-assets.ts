@@ -1,3 +1,4 @@
+import amethystBlock from '$/assets/default_minecraft/blocks/amethys_block.png?url'
 import ancientDebris from '$/assets/default_minecraft/blocks/ancient_debris_side.png?url'
 import crimsonStemTop from '$/assets/default_minecraft/blocks/crimson_stem_top.png?url'
 import magmaBlock from '$/assets/default_minecraft/blocks/magma_block.gif?url'
@@ -6,6 +7,7 @@ import quartzBlock from '$/assets/default_minecraft/blocks/quartz_block_top.png?
 import smithingTable from '$/assets/default_minecraft/blocks/smithing_table_front.png?url'
 import witherSkeletonSkull from '$/assets/default_minecraft/blocks/wither_skeleton_skull.png?url'
 import amethystShard from '$/assets/default_minecraft/materials/amethyst_shard.png?url'
+import blazeRod from '$/assets/default_minecraft/materials/blaze_rod.png?url'
 import copperIngot from '$/assets/default_minecraft/materials/copper_ingot.png?url'
 import enderPearl from '$/assets/default_minecraft/materials/ender_pearl.png?url'
 import ghastTear from '$/assets/default_minecraft/materials/ghast_tear.png?url'
@@ -14,6 +16,7 @@ import magmaCream from '$/assets/default_minecraft/materials/magma_cream.png?url
 import netherWart from '$/assets/default_minecraft/materials/nether_wart.png?url'
 import stick from '$/assets/default_minecraft/materials/stick.png?url'
 import relicForge from '$/assets/mod_assets/relicforged/item_sprites/blocks/relic_forge/relic_forge_side.png?url'
+import amethystFragment from '$/assets/mod_assets/relicforged/item_sprites/materials/resonant/amethyst_fragment.png?url'
 import resonantAlloy from '$/assets/mod_assets/relicforged/item_sprites/materials/resonant/resonant_alloy.png?url'
 import blackenedAxeHead from '$/assets/mod_assets/relicforged/item_sprites/tool_parts/blackened/blackened_axe_head.png?url'
 import blackenedEdge from '$/assets/mod_assets/relicforged/item_sprites/tool_parts/blackened/blackened_edge.png?url'
@@ -29,7 +32,10 @@ import resonantShovel from '$/assets/mod_assets/relicforged/item_sprites/tools/r
 import resonantSword from '$/assets/mod_assets/relicforged/item_sprites/tools/resonant/resonant_sword.png?url'
 
 const recipeSprites: Record<string, string> = {
+	'Amethyst Block': amethystBlock,
 	'Amethyst Shard': amethystShard,
+	'Amethyst Fragment': amethystFragment,
+	'Blaze Rod': blazeRod,
 	'Copper Ingot': copperIngot,
 	'Ender Pearl': enderPearl,
 	'Ghast Tear': ghastTear,

@@ -135,6 +135,7 @@
 }
 
 .wiki-recipe__slot {
+	position: relative;
 	display: grid;
 	place-items: center;
 	width: var(--size-recipe-slot);
@@ -143,6 +144,21 @@
 	background: var(--color-recipe-slot-background);
 	color: var(--color-recipe-slot-foreground);
 	font-family: var(--font-mono);
+}
+
+.wiki-recipe__slot-count {
+	position: absolute;
+	right: var(--space-1);
+	bottom: 0;
+	font-size: var(--font-size-small);
+	line-height: 1;
+	text-shadow: 0 1px var(--color-recipe-slot-background);
+}
+
+.wiki-recipe__method {
+	color: var(--color-foreground-muted);
+	font-family: var(--font-heading);
+	font-size: var(--font-size-small);
 }
 
 .wiki-recipe__slot img {

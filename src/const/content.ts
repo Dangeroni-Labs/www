@@ -59,7 +59,7 @@ export const RELICFORGED_WIKI_CONTENT = {
 	overview: {
 		intro:
 			'Relicforged adds new tool progression built around vanilla materials, custom forging and unique tool abilities.',
-		beta: 'The current beta includes Resonant tools, Blackened tools, the Relic Forge and Searing.',
+		beta: 'The current beta includes Resonant tools, the rebalanced Blackened tier, the Relic Forge, Searing and Amethyst recycling.',
 		progressionTitle: 'Current progression',
 		progression: ['Iron', 'Resonant', 'Diamond', 'Blackened'],
 		future: 'More progression is planned for later releases.',
@@ -78,14 +78,21 @@ export const RELICFORGED_WIKI_CONTENT = {
 			paragraphs: [
 				'Blackened tools are forged in the Relic Forge and are fireproof. Shift + Right Click with one to toggle Searing.',
 				'With Searing on, the Pickaxe, Axe and Shovel can smelt compatible drops. The Sword can ignite targets. The Hoe has no special Searing effect yet.',
-				'Blackened balancing is still being worked on during beta, so exact stats are left out for now.',
 			],
+			statsTitle: 'Blackened stats',
+			combatTitle: 'Combat stats',
+			combatHeaders: ['Tool', 'Attack damage', 'Attack speed'],
 		},
 	},
 	recipes: {
 		general: {
 			title: 'General',
 			intro: 'Recipes used to start and progress through Relicforged.',
+			amethystTitle: 'Amethyst Processing',
+			amethystIntro:
+				'Regular Amethyst Blocks can be slowly recycled back into Amethyst Shards.',
+			amethystNote:
+				'This is intentionally less efficient than growing Amethyst Clusters, but gives regular Amethyst Blocks another use.',
 		},
 		resonant: {
 			title: 'Resonant Tools',
@@ -96,6 +103,7 @@ export const RELICFORGED_WIKI_CONTENT = {
 			title: 'Blackened Tools',
 			intro:
 				'Blackened tools are assembled in the Relic Forge using a Diamond tool, Blackened components and a Relic Forging Template.',
+			templateNote: 'The Relic Forging Template is reusable.',
 			tools: [
 				'Blackened Pickaxe',
 				'Blackened Axe',
@@ -105,6 +113,7 @@ export const RELICFORGED_WIKI_CONTENT = {
 			],
 			notice: [
 				'Forged in the Relic Forge.',
+				'Use the matching Diamond tool, Blackened Handle and Blackened head or edge.',
 				'Recipe images are still being worked on.',
 			],
 		},

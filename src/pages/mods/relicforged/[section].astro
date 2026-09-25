@@ -6,7 +6,13 @@ import RecipeDetails from '$/components/ui/RecipeDetails.astro'
 import WikiImage from '$/components/ui/WikiImage.astro'
 import { RELICFORGED_WIKI_CONTENT } from '$/const/content'
 import LargeModLayout from '$/features/mods/LargeModLayout.astro'
-import { relicforgedRecipes, resonantStats } from '$/lib/relicforged'
+import {
+	amethystProcessingRecipes,
+	blackenedCombatStats,
+	blackenedStats,
+	relicforgedRecipes,
+	resonantStats,
+} from '$/lib/relicforged'
 
 export async function getStaticPaths() {
 	const docs = await getCollection(
@@ -35,6 +41,9 @@ const generalRecipes = relicforgedRecipes.filter(
 const resonantRecipes = relicforgedRecipes.filter(recipe =>
 	recipe.title.startsWith('Resonant '),
 )
+const blackenedComponents = relicforgedRecipes.filter(recipe =>
+	recipe.title.startsWith('Blackened '),
+)
 const recipeContent = RELICFORGED_WIKI_CONTENT.recipes
 const gearContent = RELICFORGED_WIKI_CONTENT.gear
 ---
@@ -50,6 +59,11 @@ const gearContent = RELICFORGED_WIKI_CONTENT.gear
 								<p>{recipeContent.general.intro}</p>
 								<div class="wiki-recipe-section__list">
 									{generalRecipes.map(recipe => <RecipeDetails title={recipe.title}><RecipeCard recipe={recipe} /></RecipeDetails>)}
+									<RecipeDetails title={recipeContent.general.amethystTitle}>
+										<p>{recipeContent.general.amethystIntro}</p>
+										{amethystProcessingRecipes.map(recipe => <RecipeCard recipe={recipe} />)}
+										<p>{recipeContent.general.amethystNote}</p>
+									</RecipeDetails>
 								</div>
 							</section>
 							<section class="wiki-recipe-section" aria-labelledby="resonant-recipes-title">
@@ -63,10 +77,12 @@ const gearContent = RELICFORGED_WIKI_CONTENT.gear
 								<h3 id="blackened-recipes-title">{recipeContent.blackened.title}</h3>
 								<p>{recipeContent.blackened.intro}</p>
 								<div class="wiki-recipe-section__list">
+									{blackenedComponents.map(recipe => <RecipeDetails title={recipe.title}><RecipeCard recipe={recipe} /></RecipeDetails>)}
 									{recipeContent.blackened.tools.map(tool => (
 										<RecipeDetails title={tool}>
 											<div class="wiki-recipe-notice">
 												{recipeContent.blackened.notice.map(line => <p>{line}</p>)}
+												<p>{recipeContent.blackened.templateNote}</p>
 												</div>
 										</RecipeDetails>
 									))}
@@ -94,6 +110,17 @@ const gearContent = RELICFORGED_WIKI_CONTENT.gear
 								<div class="min-w-0 md:order-2">
 									<h2 id="blackened-title">{gearContent.blackened.title}</h2>
 									{gearContent.blackened.paragraphs.map(paragraph => <p>{paragraph}</p>)}
+									<h3 class="mt-6 font-heading text-xl text-[var(--color-foreground)]">{gearContent.blackened.statsTitle}</h3>
+									<dl class="mt-6 grid gap-2 border-y border-[var(--color-border)] py-4">
+										{blackenedStats.map(stat => <div class="flex justify-between gap-4"><dt class="text-[var(--color-foreground)]">{stat.label}</dt><dd class="m-0">{stat.value}</dd></div>)}
+									</dl>
+									<h3 class="mt-6 font-heading text-xl text-[var(--color-foreground)]">{gearContent.blackened.combatTitle}</h3>
+									<div class="mt-6 overflow-x-auto">
+										<table class="w-full border-y border-[var(--color-border)] text-left text-sm">
+											<thead><tr>{gearContent.blackened.combatHeaders.map(header => <th scope="col" class="py-2 pr-4 font-semibold text-[var(--color-foreground)]">{header}</th>)}</tr></thead>
+											<tbody>{blackenedCombatStats.map(stat => <tr class="border-t border-[var(--color-border)]"><th scope="row" class="py-2 pr-4 font-normal text-[var(--color-foreground)]">{stat.tool}</th><td class="py-2 pr-4">{stat.damage}</td><td class="py-2">{stat.speed}</td></tr>)}</tbody>
+										</table>
+									</div>
 								</div>
 								<WikiImage alt={RELICFORGED_WIKI_CONTENT.blackenedImageAlt} />
 							</section>

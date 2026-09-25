@@ -35,13 +35,15 @@ const { recipe } = Astro.props
 				</div>
 			)
 		}
+		{recipe.method && <span class="wiki-recipe__arrow" aria-hidden="true">→</span>}
+		{recipe.method && <span class="wiki-recipe__method">{recipe.method}</span>}
 		<span class="wiki-recipe__arrow" aria-hidden="true">→</span>
 		<div class="wiki-recipe__result">
-			<RecipeSlot src={getRecipeSprite(recipe.title)} alt={recipe.title} />
+			<RecipeSlot src={getRecipeSprite(recipe.title)} alt={`${recipe.count ?? 1}x ${recipe.title}`} count={recipe.count} />
 		</div>
 	</div>
 	<p class="wiki-recipe__ingredients">
 		{recipe.pattern ? Object.values(recipe.key ?? {}).join(' · ') : recipe.ingredients.join(' · ')}
-		→ {recipe.title}
+		→ {recipe.count ?? 1}x {recipe.title}
 	</p>
 </div>

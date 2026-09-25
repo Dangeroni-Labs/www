@@ -6,9 +6,10 @@ interface Props {
 	alt: string
 	title?: string
 	empty?: boolean
+	count?: number
 }
 
-const { src, alt, title, empty = false } = Astro.props
+const { src, alt, title, empty = false, count } = Astro.props
 ---
 
 <span
@@ -17,4 +18,5 @@ const { src, alt, title, empty = false } = Astro.props
 	aria-hidden={empty ? 'true' : undefined}
 >
 	{!empty && (src ? <img src={src} alt={alt} loading="lazy" width="16" height="16" /> : <span role="img" aria-label={alt}>?</span>)}
+	{count && count > 1 && <span class="wiki-recipe__slot-count" aria-hidden="true">{count}</span>}
 </span>

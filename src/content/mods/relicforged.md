@@ -4,7 +4,7 @@ slug: relicforged
 summary: Forge forgotten materials into relic tools.
 versions:
   - minecraft: '1.20.1'
-    version: 1.0.0-beta.3
+    version: 1.0.0-beta.4
     status: Beta
     loaders:
       - Forge
